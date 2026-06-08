@@ -6,6 +6,7 @@
   "scripts": {
     "copy-designs": "node scripts/copy-designs.js",
     "dev": "next dev",
+    "prebuild": "npm run copy-designs",
     "build": "next build",
     "start": "next start"
   },
