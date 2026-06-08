@@ -31,6 +31,16 @@ const nextConfig = {
       }
     }
 
+    // Logo showcase pages
+    rewrites.push({
+      source: '/logos',
+      destination: '/logos/logos.html',
+    });
+    rewrites.push({
+      source: '/logos/comparison',
+      destination: '/logos/logo-comparison.html',
+    });
+
     return rewrites;
   },
   async headers() {

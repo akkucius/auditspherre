@@ -85,6 +85,35 @@ function copyVersion(version) {
   console.log(`  Copied ${version} (${type})`);
 }
 
+function copyLogos() {
+  const srcDir = path.join(designRoot, 'logos');
+  const destDir = path.join(publicRoot, 'logos');
+
+  if (!fs.existsSync(srcDir)) {
+    console.warn('  Skipping logos — source folder not found');
+    return;
+  }
+
+  removeDirectory(destDir);
+  fs.mkdirSync(destDir, { recursive: true });
+
+  for (const entry of fs.readdirSync(srcDir, { withFileTypes: true })) {
+    if (entry.isDirectory()) continue;
+
+    const srcFile = path.join(srcDir, entry.name);
+    const destFile = path.join(destDir, entry.name);
+
+    if (entry.name.endsWith('.html')) {
+      const html = fs.readFileSync(srcFile, 'utf8');
+      fs.writeFileSync(destFile, injectRobotsMeta(html), 'utf8');
+    } else {
+      fs.copyFileSync(srcFile, destFile);
+    }
+  }
+
+  console.log('  Copied logos/');
+}
+
 // Remove versions no longer in use
 const obsolete = ['v4', 'v5'];
 for (const v of obsolete) {
@@ -100,5 +129,7 @@ fs.mkdirSync(publicRoot, { recursive: true });
 for (const version of VERSIONS) {
   copyVersion(version);
 }
+
+copyLogos();
 
 console.log('Done.');
