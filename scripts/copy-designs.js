@@ -8,6 +8,21 @@ const publicRoot = path.join(root, 'public');
 const MULTI_PAGE_VERSIONS = ['v1', 'v2', 'v3'];
 const SPA_VERSIONS = ['v4', 'v5'];
 const SPA_FILES = ['index.html'];
+const ROBOTS_META = [
+  '<meta name="robots" content="noindex, nofollow">',
+  '<meta name="googlebot" content="noindex, nofollow">',
+].join('\n  ');
+
+function injectRobotsMeta(html) {
+  if (/name="robots"/i.test(html)) {
+    return html.replace(
+      /<meta\s+name="robots"[^>]*>/i,
+      '<meta name="robots" content="noindex, nofollow">',
+    );
+  }
+
+  return html.replace(/<head>/i, `<head>\n  ${ROBOTS_META}`);
+}
 
 function removeDirectory(dir) {
   if (fs.existsSync(dir)) {
@@ -38,7 +53,8 @@ function rewriteInternalLinks(html, version) {
 }
 
 function processMultiPageHtml(html, version) {
-  let output = injectBaseHref(html, version);
+  let output = injectRobotsMeta(html);
+  output = injectBaseHref(output, version);
   output = rewriteInternalLinks(output, version);
   return output;
 }
@@ -81,6 +97,7 @@ function copySpaVersion(version) {
     }
 
     let html = fs.readFileSync(srcFile, 'utf8');
+    html = injectRobotsMeta(html);
     const baseTag = `<base href="/${version}/">`;
     if (!/<base\s/i.test(html)) {
       html = html.replace(/<head>/i, `<head>\n  ${baseTag}`);
