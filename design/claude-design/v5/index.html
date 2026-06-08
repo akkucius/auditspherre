@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auditspherre — Precision. Compliance. Trust.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <style>
+    /* =============================================
+       DESIGN TOKENS — Cobalt & Coral
+       ============================================= */
+    :root {
+      --bg:            #FFFFFF;
+      --bg-alt:        #F4F5FF;
+      --bg-dark:       #0C1230;
+      --bg-darker:     #07091A;
+
+      --cobalt:        #1B2CC1;
+      --cobalt-dark:   #101D8F;
+      --cobalt-mid:    #3547D4;
+      --cobalt-light:  #4A5BE8;
+      --cobalt-tint:   #EEF0FD;
+      --cobalt-ghost:  #F4F5FF;
+
+      --coral:         #FF6B35;
+      --coral-dark:    #E85820;
+      --coral-light:   #FF8A5B;
+      --coral-tint:    #FFF1EB;
+
+      --text:          #0D0F1E;
+      --text-2:        #475569;
+      --text-3:        #8892A4;
+      --border:        #E1E4F5;
+
+      --shadow-xs:  0 1px 3px rgba(13,18,48,0.06);
+      --shadow-sm:  0 2px 10px rgba(13,18,48,0.07), 0 1px 3px rgba(0,0,0,0.04);
+      --shadow-md:  0 4px 24px rgba(27,44,193,0.11), 0 2px 8px rgba(0,0,0,0.04);
+      --shadow-cobalt: 0 8px 32px rgba(27,44,193,0.22), 0 2px 8px rgba(27,44,193,0.1);
+      --shadow-coral:  0 8px 28px rgba(255,107,53,0.32);
+
+      --r-sm:   8px;
+      --r:      14px;
+      --r-lg:   20px;
+      --r-pill: 100px;
+
+      --font:   'Plus Jakarta Sans', system-ui, sans-serif;
+      --nav-h:  72px;
+      --max-w:  1200px;
+    }
+
+    /* =============================================
+       RESET & BASE
+       ============================================= */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font); font-size: 16px; line-height: 1.65;
+      background: var(--bg); color: var(--text);
+      overflow-x: hidden; -webkit-font-smoothing: antialiased;
+    }
+    h1 { font-size: clamp(2.5rem, 5.5vw, 4.25rem); font-weight: 800; line-height: 1.06; letter-spacing: -0.035em; }
+    h2 { font-size: clamp(1.75rem, 3.5vw, 2.75rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.025em; }
+    h3 { font-size: clamp(1.15rem, 2vw, 1.5rem); font-weight: 600; line-height: 1.2; letter-spacing: -0.015em; }
+    h4 { font-size: 1.05rem; font-weight: 600; }
+    p  { color: var(--text-2); line-height: 1.78; }
+    a  { text-decoration: none; color: inherit; }
+
+    .coral-text  { color: var(--coral); }
+    .cobalt-text { color: var(--cobalt); }
+
+    .section-tag {
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--cobalt-mid); margin-bottom: 1rem;
+    }
+    .section-tag::before { content: ''; width: 1.5rem; height: 2px; background: var(--cobalt-mid); border-radius: 2px; flex-shrink: 0; }
+    .section-tag.coral { color: var(--coral); }
+    .section-tag.coral::before { background: var(--coral); }
+    .section-tag.dim { color: rgba(255,255,255,0.45); }
+    .section-tag.dim::before { background: rgba(255,255,255,0.25); }
+
+    /* =============================================
+       LAYOUT
+       ============================================= */
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 2rem; }
+    .section    { padding: 6rem 0; }
+    .section-sm { padding: 4rem 0; }
+
+    /* =============================================
+       BUTTONS
+       ============================================= */
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: var(--font); font-size: 0.9rem; font-weight: 600;
+      padding: 0.85rem 1.8rem; border-radius: var(--r-sm); border: none;
+      cursor: pointer; transition: all 0.22s ease;
+      text-decoration: none; white-space: nowrap;
+    }
+    .btn-coral  { background: var(--coral); color: #fff; box-shadow: 0 2px 14px rgba(255,107,53,0.32); }
+    .btn-coral:hover  { background: var(--coral-dark); transform: translateY(-1px); box-shadow: var(--shadow-coral); }
+    .btn-cobalt { background: var(--cobalt); color: #fff; box-shadow: 0 2px 12px rgba(27,44,193,0.28); }
+    .btn-cobalt:hover { background: var(--cobalt-dark); transform: translateY(-1px); box-shadow: var(--shadow-cobalt); }
+    .btn-outline {
+      background: transparent; color: var(--cobalt);
+      border: 1.5px solid var(--cobalt);
+    }
+    .btn-outline:hover { background: var(--cobalt-ghost); }
+    .btn-outline-white {
+      background: transparent; color: #fff;
+      border: 1.5px solid rgba(255,255,255,0.35);
+    }
+    .btn-outline-white:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.65); }
+    .btn-link {
+      font-size: 0.875rem; font-weight: 600; color: var(--cobalt);
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      transition: gap 0.2s, color 0.2s; cursor: pointer;
+    }
+    .btn-link:hover { gap: 0.7rem; color: var(--cobalt-dark); }
+
+    /* =============================================
+       SCROLL ANIMATIONS
+       ============================================= */
+    .fade-up {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 0.1s; }
+    .d2 { transition-delay: 0.2s; }
+    .d3 { transition-delay: 0.3s; }
+    .d4 { transition-delay: 0.4s; }
+    /* Hero is always visible — no observer needed */
+    #hero .fade-up { opacity: 1; transform: none; }
+
+    /* =============================================
+       NAVBAR
+       ============================================= */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: var(--nav-h);
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    #navbar.scrolled { border-bottom-color: var(--border); box-shadow: 0 1px 8px rgba(27,44,193,0.07); }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 100%; max-width: var(--max-w); margin: 0 auto; padding: 0 2rem;
+    }
+    .logo { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.025em; color: var(--cobalt); }
+    .logo span { color: var(--coral); }
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.875rem; font-weight: 500; color: var(--text-2);
+      transition: color 0.2s; padding: 0.3rem 0; position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
+      height: 2px; background: var(--cobalt); border-radius: 2px;
+      transform: scaleX(0); transition: transform 0.2s; transform-origin: left;
+    }
+    .nav-links a:hover { color: var(--cobalt); }
+    .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+    .nav-links a.active { color: var(--cobalt); font-weight: 600; }
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* =============================================
+       HERO
+       ============================================= */
+    #hero {
+      min-height: 100vh; padding-top: var(--nav-h);
+      background:
+        radial-gradient(ellipse 65% 70% at 78% 45%, rgba(27,44,193,0.07) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 50% at 10% 80%, rgba(255,107,53,0.05) 0%, transparent 60%),
+        var(--bg);
+      display: flex; flex-direction: column;
+    }
+    .hero-main { flex: 1; display: flex; align-items: center; padding: 4rem 0; }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 4rem; align-items: center; width: 100%; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--cobalt-tint); border: 1px solid rgba(27,44,193,0.18);
+      border-radius: var(--r-pill); padding: 0.38rem 1rem;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--cobalt); margin-bottom: 1.75rem;
+      white-space: nowrap;
+    }
+    .eyebrow-dot { width: 6px; height: 6px; background: var(--coral); border-radius: 50%; flex-shrink: 0; animation: pulse-dot 2s ease-in-out infinite; }
+    @keyframes pulse-dot { 0%,100%{transform:scale(1);opacity:1;} 50%{transform:scale(1.5);opacity:0.7;} }
+    #hero h1 { font-size: clamp(2rem, 3.2vw, 3rem); margin-bottom: 0.5rem; }
+    .hero-accent { font-size: clamp(2rem, 3.2vw, 3rem); font-weight: 800; color: var(--coral); letter-spacing: -0.03em; line-height: 1.06; margin-bottom: 1.5rem; }
+    .hero-sub { font-size: 1.02rem; line-height: 1.78; max-width: 520px; margin-bottom: 2rem; }
+    .hero-ctas { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+    .trust-strip { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .trust-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); }
+    .trust-pills { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .trust-pill {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--cobalt);
+      padding: 0.28rem 0.8rem; border: 1px solid var(--border);
+      border-radius: var(--r-pill); background: var(--cobalt-ghost);
+    }
+    .hero-sphere-wrap { display: flex; justify-content: center; align-items: center; }
+    .hero-sphere-svg { width: 100%; max-width: 480px; height: auto; }
+    .orbit-ring { transform-box: fill-box; transform-origin: center; animation: orbit-spin 28s linear infinite; }
+    .sphere-glow-el { animation: sphere-pulse 5s ease-in-out infinite; }
+    @keyframes orbit-spin  { from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
+    @keyframes sphere-pulse{ 0%,100%{opacity:0.85;} 50%{opacity:0.5;} }
+    .hero-trust { flex-shrink: 0; border-top: 1px solid var(--border); }
+
+    /* =============================================
+       HERO VISUAL — FLOATING CARDS SLIDER
+       ============================================= */
+    .hero-visual { position: relative; width: 100%; max-width: 440px; }
+    .hero-slides { position: relative; height: 370px; }
+    .hero-slide {
+      position: absolute; inset: 0;
+      opacity: 0; transition: opacity 0.6s ease;
+      pointer-events: none;
+    }
+    .hero-slide.active { opacity: 1; pointer-events: auto; }
+    .fc {
+      position: absolute;
+      background: #fff; border-radius: var(--r-lg);
+      border: 1px solid var(--border);
+    }
+    .fc-main {
+      box-shadow: 0 8px 32px rgba(27,44,193,0.14), 0 2px 8px rgba(0,0,0,0.05);
+      padding: 1.75rem; z-index: 2;
+    }
+    .fc-secondary {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      padding: 1.25rem 1.5rem; z-index: 1;
+    }
+    .fc-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .fc-badge {
+      display: inline-block; font-size: 0.6rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.22rem 0.65rem; border-radius: var(--r-pill);
+      margin-bottom: 0.3rem; white-space: nowrap;
+    }
+    .fc-badge.cobalt { background: var(--cobalt-tint); color: var(--cobalt); }
+    .fc-badge.coral  { background: var(--coral-tint);  color: var(--coral); }
+    .fc-checklist { display: flex; flex-direction: column; gap: 0.5rem; }
+    .fc-check {
+      display: flex; align-items: center; gap: 0.55rem;
+      font-size: 0.84rem; color: var(--text-2);
+    }
+    .fc-check::before {
+      content: ''; flex-shrink: 0; width: 16px; height: 16px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7' fill='%23EEF0FD' stroke='%231B2CC1' stroke-width='0.8'/%3E%3Cpath d='M5 8l2 2 4-4' stroke='%231B2CC1' stroke-width='1.3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center;
+    }
+    .fc-trust-list { display: flex; flex-direction: column; gap: 0.7rem; }
+    .fc-trust-item { display: flex; align-items: center; gap: 0.65rem; font-size: 0.875rem; color: var(--text-2); }
+    .fc-trust-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--cobalt-light); flex-shrink: 0; }
+    .fc-trust-dot.coral { background: var(--coral); }
+    .slide-nav { display: flex; align-items: center; gap: 1rem; margin-top: 1.5rem; padding-left: 24px; }
+    .slide-track { flex: 1; height: 3px; background: var(--border); border-radius: 3px; overflow: hidden; }
+    .slide-fill  { height: 100%; background: var(--cobalt); border-radius: 3px; width: 0; }
+    .slide-dots  { display: flex; gap: 0.4rem; }
+    .slide-dot {
+      width: 7px; height: 7px; border-radius: var(--r-pill); background: var(--border);
+      border: none; cursor: pointer; transition: all 0.3s ease; padding: 0;
+    }
+    .slide-dot.active { background: var(--cobalt); width: 22px; }
+
+    /* =============================================
+       STATS
+       ============================================= */
+    #stats { background: var(--bg-dark); padding: 5rem 0; }
+    #stats .section-tag-row { text-align: center; margin-bottom: 3rem; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+    .stat-item { padding: 2.5rem 2rem; text-align: center; border-right: 1px solid rgba(255,255,255,0.08); }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-size: clamp(3rem, 4.5vw, 4.5rem); font-weight: 800; color: var(--coral);
+      letter-spacing: -0.04em; display: block; line-height: 1; margin-bottom: 0.6rem;
+    }
+    .stat-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.42); }
+
+    /* =============================================
+       SERVICES
+       ============================================= */
+    #services { background: var(--bg); }
+    .section-header { max-width: 600px; margin-bottom: 3.5rem; }
+    .section-header p { margin-top: 0.75rem; font-size: 1rem; }
+    .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .service-card {
+      background: #fff; border: 1px solid var(--border); border-radius: var(--r-lg);
+      overflow: hidden; box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.3s, transform 0.25s;
+    }
+    .service-card:hover { box-shadow: var(--shadow-cobalt); transform: translateY(-4px); }
+    .scard-header {
+      padding: 2rem 2.25rem 1.75rem; position: relative; overflow: hidden;
+      background: linear-gradient(135deg, var(--cobalt) 0%, var(--cobalt-mid) 100%);
+    }
+    .scard-header.cyber { background: linear-gradient(135deg, #1A1A2E 0%, #0F3460 100%); }
+    .scard-header::after {
+      content: ''; position: absolute; right: -40px; top: -40px;
+      width: 160px; height: 160px; border-radius: 50%;
+      background: rgba(255,255,255,0.05); pointer-events: none;
+    }
+    .scard-badge {
+      display: inline-block; font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.28rem 0.8rem; border-radius: var(--r-pill);
+      background: rgba(255,255,255,0.14); color: rgba(255,255,255,0.9);
+      margin-bottom: 1rem; white-space: nowrap;
+    }
+    .scard-header h3 { color: #fff; font-size: 1.55rem; margin-bottom: 0.5rem; }
+    .scard-header p { color: rgba(255,255,255,0.68); font-size: 0.875rem; }
+    .scard-icon { position: absolute; right: 1.75rem; bottom: 1.5rem; opacity: 0.1; }
+    .scard-body { padding: 2rem 2.25rem; }
+    .feature-list { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; margin-bottom: 1.75rem; }
+    .feature-list li {
+      display: flex; align-items: flex-start; gap: 0.65rem;
+      font-size: 0.875rem; color: var(--text-2); line-height: 1.55;
+    }
+    .feature-list li::before {
+      content: ''; flex-shrink: 0; width: 18px; height: 18px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'%3E%3Ccircle cx='9' cy='9' r='8' fill='%23EEF0FD' stroke='%231B2CC1' stroke-width='1'/%3E%3Cpath d='M5.5 9l2.5 2.5 4.5-4.5' stroke='%231B2CC1' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center;
+    }
+    .who-for-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: var(--text-3); margin-bottom: 0.65rem; }
+    .who-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.75rem; }
+    .who-tag {
+      font-size: 0.78rem; font-weight: 500; color: var(--cobalt);
+      padding: 0.3rem 0.85rem; border-radius: var(--r-pill);
+      background: var(--cobalt-ghost); border: 1px solid rgba(27,44,193,0.15);
+    }
+
+    /* =============================================
+       USE CASES
+       ============================================= */
+    #use-cases { background: var(--bg-alt); }
+    .use-cases-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem; }
+    .use-case-card {
+      background: #fff; border: 1px solid var(--border); border-radius: var(--r-lg);
+      padding: 2.25rem; box-shadow: var(--shadow-xs);
+      transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+    }
+    .use-case-card:hover { box-shadow: var(--shadow-cobalt); transform: translateY(-3px); border-color: rgba(27,44,193,0.2); }
+    .uc-num { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.05em; color: var(--cobalt-tint); display: block; line-height: 1; margin-bottom: 1rem; }
+    .use-case-card h4 { margin-bottom: 0.6rem; }
+    .use-case-card p { font-size: 0.875rem; }
+
+    /* =============================================
+       PROCESS
+       ============================================= */
+    #process { background: var(--bg); }
+    .process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
+    .process-card {
+      background: #fff; border: 1px solid var(--border); border-radius: var(--r-lg);
+      padding: 2.5rem; box-shadow: var(--shadow-xs);
+      position: relative;
+    }
+    .process-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--coral), var(--coral-light));
+      border-radius: var(--r-lg) var(--r-lg) 0 0;
+    }
+    .proc-num {
+      width: 48px; height: 48px;
+      background: linear-gradient(135deg, var(--coral), var(--coral-light));
+      border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+      font-size: 0.9rem; font-weight: 800; color: #fff; margin-bottom: 1.5rem;
+      box-shadow: 0 4px 14px rgba(255,107,53,0.32);
+    }
+    .process-card h4 { margin-bottom: 0.65rem; }
+    .process-card p { font-size: 0.875rem; }
+    .process-cta { text-align: center; margin-top: 2.5rem; }
+
+    /* =============================================
+       ABOUT
+       ============================================= */
+    #about { background: var(--bg-alt); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .about-text h2 { margin-bottom: 1.5rem; }
+    .about-text p { margin-bottom: 1.25rem; font-size: 1rem; }
+    .creds-list { list-style: none; margin-top: 2rem; }
+    .creds-list li {
+      display: flex; align-items: flex-start; gap: 0.85rem;
+      padding: 1rem 0; border-bottom: 1px solid var(--border);
+      font-size: 0.9rem; color: var(--text-2);
+    }
+    .creds-list li:first-child { border-top: 1px solid var(--border); }
+    .creds-list li::before {
+      content: ''; flex-shrink: 0; width: 18px; height: 18px; margin-top: 2px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'%3E%3Ccircle cx='9' cy='9' r='8' fill='%23FFF1EB' stroke='%23FF6B35' stroke-width='1.2'/%3E%3Cpath d='M5.5 9l2.5 2.5 4.5-4.5' stroke='%23FF6B35' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center;
+    }
+    .expertise-stack { display: flex; flex-direction: column; gap: 1rem; }
+    .exp-card {
+      background: #fff; border: 1px solid var(--border); border-radius: var(--r);
+      padding: 1.5rem 1.75rem; box-shadow: var(--shadow-xs);
+      display: flex; gap: 1.25rem; align-items: flex-start;
+      transition: box-shadow 0.25s, border-color 0.25s;
+    }
+    .exp-card:hover { box-shadow: var(--shadow-cobalt); border-color: rgba(27,44,193,0.2); }
+    .exp-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: var(--cobalt-ghost); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .exp-card h4 { font-size: 0.95rem; margin-bottom: 0.35rem; }
+    .exp-card p { font-size: 0.825rem; }
+
+    /* =============================================
+       TESTIMONIALS
+       ============================================= */
+    #testimonials { background: var(--bg); }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    .tcard {
+      background: #fff; border: 1px solid var(--border); border-radius: var(--r-lg);
+      padding: 2rem; box-shadow: var(--shadow-xs);
+      transition: box-shadow 0.25s, transform 0.25s;
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .tcard:hover { box-shadow: var(--shadow-cobalt); transform: translateY(-3px); }
+    .quote-icon { font-size: 3rem; line-height: 1; color: var(--coral); font-weight: 900; display: block; height: 2.5rem; }
+    .tcard-text { font-size: 0.9rem; color: var(--text-2); line-height: 1.72; font-style: italic; flex: 1; }
+    .tcard-author { display: flex; align-items: center; gap: 0.85rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+    .author-avatar {
+      width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+      background: var(--cobalt-tint); border: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.78rem; font-weight: 700; color: var(--cobalt);
+    }
+    .author-name { font-size: 0.875rem; font-weight: 600; color: var(--text); }
+    .author-role { font-size: 0.775rem; color: var(--text-3); }
+    .stars { color: var(--coral); font-size: 0.78rem; letter-spacing: 0.04em; margin-top: 0.15rem; }
+    .t-note { text-align: center; margin-top: 2rem; font-size: 0.78rem; color: var(--text-3); }
+
+    /* =============================================
+       CONTACT
+       ============================================= */
+    #contact { background: var(--bg-dark); padding: 6rem 0; }
+    .contact-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 5rem; align-items: start; }
+    .contact-h2 { color: #fff; margin-bottom: 0.75rem; }
+    .contact-sub { color: rgba(255,255,255,0.52); margin-bottom: 2.5rem; max-width: 460px; }
+    .form-group { margin-bottom: 1.2rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-label { display: block; font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.65); margin-bottom: 0.4rem; }
+    .form-control {
+      width: 100%; background: rgba(255,255,255,0.07);
+      border: 1.5px solid rgba(255,255,255,0.14); color: #fff;
+      padding: 0.8rem 1rem; border-radius: var(--r-sm);
+      font-family: var(--font); font-size: 0.9rem;
+      transition: border-color 0.2s, background 0.2s; appearance: none;
+    }
+    .form-control:focus { outline: none; border-color: var(--coral); background: rgba(255,255,255,0.1); }
+    .form-control::placeholder { color: rgba(255,255,255,0.28); }
+    textarea.form-control { resize: vertical; min-height: 110px; }
+    select.form-control {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.4)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; cursor: pointer;
+    }
+    select.form-control option { background: #1A2040; color: #fff; }
+    .form-note { font-size: 0.75rem; color: rgba(255,255,255,0.3); margin-top: 0.85rem; }
+    .form-success {
+      display: none; text-align: center; padding: 3rem 2rem;
+      border: 1px solid rgba(255,107,53,0.28); border-radius: var(--r-lg);
+      background: rgba(255,107,53,0.07);
+    }
+    .form-success.visible { display: block; }
+    .form-success h3 { color: #fff; margin-bottom: 0.6rem; }
+    .form-success p { color: rgba(255,255,255,0.55); }
+    .contact-info-col { padding-top: 5.5rem; }
+    .ci-heading { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 1.5rem; }
+    .ci-items { display: flex; flex-direction: column; gap: 1.25rem; }
+    .ci-item { display: flex; gap: 1rem; align-items: flex-start; }
+    .ci-icon {
+      width: 40px; height: 40px; flex-shrink: 0;
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    }
+    .ci-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 0.2rem; }
+    .ci-value { font-size: 0.9rem; color: rgba(255,255,255,0.82); font-weight: 500; }
+    .ci-value a { color: var(--coral); }
+    .ci-value a:hover { opacity: 0.8; }
+    .hours-box { margin-top: 2.5rem; padding: 1.5rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--r); }
+    .hours-box-title { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 1rem; }
+    .hours-row { display: flex; justify-content: space-between; font-size: 0.845rem; padding: 0.42rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .hours-row:last-child { border-bottom: none; }
+    .hours-row .day { color: rgba(255,255,255,0.42); }
+    .hours-row .time { color: rgba(255,255,255,0.78); font-weight: 500; }
+
+    /* =============================================
+       FOOTER
+       ============================================= */
+    footer { background: #07091A; padding: 4rem 0 2rem; border-top: 1px solid rgba(255,255,255,0.05); }
+    .footer-inner { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; padding-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .footer-logo { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.025em; color: #fff; }
+    .footer-logo span { color: var(--coral); }
+    .footer-tagline { font-size: 0.85rem; color: rgba(255,255,255,0.3); margin-top: 0.5rem; }
+    .footer-col h5 { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 1.2rem; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .footer-col a { font-size: 0.875rem; color: rgba(255,255,255,0.42); transition: color 0.2s; }
+    .footer-col a:hover { color: var(--coral); }
+    .footer-bottom { margin-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-bottom p { font-size: 0.78rem; color: rgba(255,255,255,0.28); }
+    .compliance-pill { font-size: 0.68rem; color: rgba(255,255,255,0.28); padding: 0.3rem 0.85rem; border: 1px solid rgba(255,255,255,0.1); border-radius: var(--r-pill); }
+
+    /* =============================================
+       RESPONSIVE — TABLET ≤1024px
+       ============================================= */
+    @media (max-width: 1024px) {
+      .container { padding: 0 1.5rem; }
+      .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero-sphere-wrap { display: none; }
+      .services-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .process-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .contact-info-col { padding-top: 0; }
+    }
+    /* =============================================
+       RESPONSIVE — MOBILE ≤768px
+       ============================================= */
+    @media (max-width: 768px) {
+      .container { padding: 0 1.25rem; }
+      .section { padding: 4rem 0; }
+      .hamburger { display: flex; }
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: fixed; top: var(--nav-h); left: 0; right: 0;
+        background: rgba(255,255,255,0.98); backdrop-filter: blur(12px);
+        padding: 2rem; border-bottom: 1px solid var(--border);
+        gap: 1.5rem; align-items: flex-start;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      }
+      .nav-links.open a { font-size: 1rem; color: var(--text); }
+      .btn.nav-cta { display: none; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
+      .use-cases-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-ctas { flex-direction: column; align-items: flex-start; }
+      .hero-ctas .btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ======================================================
+     NAVBAR
+     ====================================================== -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="logo">Audit<span>spherre</span></a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="btn btn-coral nav-cta">Request an Audit</a>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ======================================================
+     HERO
+     ====================================================== -->
+<section id="hero">
+  <div class="hero-main">
+    <div class="container">
+      <div class="hero-grid">
+
+        <div>
+          <div class="hero-eyebrow">
+            <span class="eyebrow-dot"></span>
+            India's Specialist Audit Firm
+          </div>
+          <h1>Audit Intelligence<br>for India's</h1>
+          <div class="hero-accent">Financial Markets</div>
+          <p class="hero-sub">Auditspherre delivers SEBI-mandated stock broker audits and comprehensive cyber audits — helping regulated entities stay compliant, secure, and inspection-ready.</p>
+          <div class="hero-ctas">
+            <a href="#contact" class="btn btn-coral">Start Your Audit</a>
+            <a href="#services" class="btn btn-outline">Explore Services</a>
+          </div>
+          <div class="trust-strip">
+            <span class="trust-label">Regulated under</span>
+            <div class="trust-pills">
+              <span class="trust-pill">SEBI</span>
+              <span class="trust-pill">RBI</span>
+              <span class="trust-pill">MCA</span>
+              <span class="trust-pill">CERT-In</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-slides" id="hero-slides">
+
+            <!-- SLIDE 1: Stock Broker Audit -->
+            <div class="hero-slide active" data-slide="0">
+              <div class="fc fc-main" style="top:0;left:24px;right:0;">
+                <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.1rem;">
+                  <div class="fc-icon" style="background:var(--cobalt-tint);">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><line x1="10" y1="2" x2="10" y2="18" stroke="#1B2CC1" stroke-width="1.5" stroke-linecap="round"/><line x1="4" y1="6" x2="16" y2="6" stroke="#1B2CC1" stroke-width="1.5" stroke-linecap="round"/><line x1="4" y1="6" x2="4" y2="11" stroke="#1B2CC1" stroke-width="1.2" stroke-linecap="round"/><line x1="16" y1="6" x2="16" y2="11" stroke="#1B2CC1" stroke-width="1.2" stroke-linecap="round"/><path d="M2 11 Q4 15 6 11" stroke="#1B2CC1" stroke-width="1.2" fill="none" stroke-linecap="round"/><path d="M14 11 Q16 15 18 11" stroke="#1B2CC1" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg>
+                  </div>
+                  <div>
+                    <div class="fc-badge cobalt">SEBI Mandated</div>
+                    <h4 style="font-size:1rem;margin:0;">Stock Broker Audit</h4>
+                  </div>
+                </div>
+                <div class="fc-checklist">
+                  <div class="fc-check">Client Fund Segregation &amp; Reconciliation</div>
+                  <div class="fc-check">Peak Margin Compliance</div>
+                  <div class="fc-check">KYC / AML Process Review</div>
+                  <div class="fc-check">Exchange Circular Implementation</div>
+                </div>
+              </div>
+              <div class="fc fc-secondary" style="bottom:0;left:0;right:44px;">
+                <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:0.35rem;">Deliverable</div>
+                <div style="font-size:0.9rem;font-weight:600;color:var(--text);">Detailed Audit Report (DAR)</div>
+                <div style="font-size:0.8rem;color:var(--text-2);margin-top:0.2rem;">Exchange-accepted format, ready for submission</div>
+              </div>
+            </div>
+
+            <!-- SLIDE 2: Cyber Audit -->
+            <div class="hero-slide" data-slide="1">
+              <div class="fc fc-main" style="top:0;left:24px;right:0;">
+                <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.1rem;">
+                  <div class="fc-icon" style="background:#0F3460;">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2 L17 4.5 L17 11 Q17 16 10 19 Q3 16 3 11 L3 4.5 Z" stroke="white" stroke-width="1.3" fill="none" stroke-linejoin="round"/><path d="M7 10.5l2 2 4-4" stroke="white" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </div>
+                  <div>
+                    <div class="fc-badge coral">CERT-In · SEBI CSCRF</div>
+                    <h4 style="font-size:1rem;margin:0;">Cyber Audit</h4>
+                  </div>
+                </div>
+                <div class="fc-checklist">
+                  <div class="fc-check">Vulnerability Assessment &amp; VAPT</div>
+                  <div class="fc-check">SEBI CSCRF Gap Analysis</div>
+                  <div class="fc-check">Web &amp; Mobile Application Security</div>
+                  <div class="fc-check">Incident Response Readiness</div>
+                </div>
+              </div>
+              <div class="fc fc-secondary" style="bottom:0;left:0;right:44px;">
+                <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:0.35rem;">Output</div>
+                <div style="font-size:0.9rem;font-weight:600;color:var(--text);">CVSS-Scored VAPT Report</div>
+                <div style="font-size:0.8rem;color:var(--text-2);margin-top:0.2rem;">With prioritised remediation plan for board &amp; management</div>
+              </div>
+            </div>
+
+            <!-- SLIDE 3: Client Use Case -->
+            <div class="hero-slide" data-slide="2">
+              <div class="fc fc-main" style="top:0;left:24px;right:0;">
+                <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--coral);margin-bottom:0.75rem;">Client Scenario</div>
+                <h4 style="font-size:1rem;margin-bottom:0.75rem;">New BSE Member — Pre-inspection Readiness</h4>
+                <p style="font-size:0.875rem;color:var(--text-2);line-height:1.65;margin-bottom:1.25rem;font-style:italic;">"We were anxious about our first exchange inspection. Auditspherre's mock audit found gaps we hadn't noticed. We passed with zero observations."</p>
+                <div style="display:flex;align-items:center;gap:0.75rem;">
+                  <div style="width:36px;height:36px;border-radius:50%;background:var(--cobalt-tint);display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;color:var(--cobalt);flex-shrink:0;">AM</div>
+                  <div>
+                    <div style="font-size:0.85rem;font-weight:600;color:var(--text);">Arun Mehta</div>
+                    <div style="font-size:0.75rem;color:var(--text-3);">Director, BSE Trading Member</div>
+                  </div>
+                </div>
+              </div>
+              <div class="fc fc-secondary" style="bottom:0;left:0;right:44px;">
+                <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:0.35rem;">Result</div>
+                <div style="font-size:0.95rem;font-weight:700;color:var(--cobalt);">Inspection passed ✓</div>
+                <div style="font-size:0.8rem;color:var(--text-2);margin-top:0.2rem;">Zero observations from exchange</div>
+              </div>
+            </div>
+
+            <!-- SLIDE 4: Trust Signals -->
+            <div class="hero-slide" data-slide="3">
+              <div class="fc fc-main" style="top:0;left:24px;right:0;">
+                <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--cobalt-mid);margin-bottom:1rem;">Why Trust Auditspherre</div>
+                <div class="fc-trust-list">
+                  <div class="fc-trust-item"><span class="fc-trust-dot"></span>SEBI empanelled — NSE, BSE, MCX, NCDEX</div>
+                  <div class="fc-trust-item"><span class="fc-trust-dot"></span>CISA, CEH &amp; ISO 27001 certified auditors</div>
+                  <div class="fc-trust-item"><span class="fc-trust-dot coral"></span>100% on-time delivery record</div>
+                  <div class="fc-trust-item"><span class="fc-trust-dot"></span>All clients under NDA from day one</div>
+                </div>
+              </div>
+              <div class="fc fc-secondary" style="bottom:0;left:0;right:44px;">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;text-align:center;">
+                  <div>
+                    <div style="font-size:1.75rem;font-weight:800;color:var(--coral);letter-spacing:-0.04em;line-height:1;">200+</div>
+                    <div style="font-size:0.65rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-3);">Audits Done</div>
+                  </div>
+                  <div style="border-left:1px solid var(--border);">
+                    <div style="font-size:1.75rem;font-weight:800;color:var(--cobalt);letter-spacing:-0.04em;line-height:1;">15+</div>
+                    <div style="font-size:0.65rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-3);">Yrs Expertise</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="slide-nav">
+            <div class="slide-track"><div class="slide-fill" id="slide-fill"></div></div>
+            <div class="slide-dots" id="slide-dots">
+              <button class="slide-dot active" aria-label="Slide 1"></button>
+              <button class="slide-dot" aria-label="Slide 2"></button>
+              <button class="slide-dot" aria-label="Slide 3"></button>
+              <button class="slide-dot" aria-label="Slide 4"></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="hero-trust">
+    <div class="container">
+      <div style="padding: 1.5rem 0; display:flex; align-items:center; gap:2rem; flex-wrap:wrap;">
+        <span style="font-size:0.68rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-3);">Trusted by entities regulated under</span>
+        <div style="display:flex;gap:1.25rem;flex-wrap:wrap;">
+          <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--cobalt);opacity:0.55;">SEBI</span>
+          <span style="opacity:0.25;color:var(--border);">·</span>
+          <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--cobalt);opacity:0.55;">RBI</span>
+          <span style="opacity:0.25;color:var(--border);">·</span>
+          <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--cobalt);opacity:0.55;">MCA</span>
+          <span style="opacity:0.25;color:var(--border);">·</span>
+          <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--cobalt);opacity:0.55;">CERT-In</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================
+     STATS
+     ====================================================== -->
+<section id="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item fade-up">
+        <span class="stat-num">200+</span>
+        <span class="stat-label">Audits completed</span>
+      </div>
+      <div class="stat-item fade-up d1">
+        <span class="stat-num">50+</span>
+        <span class="stat-label">Broker clients served</span>
+      </div>
+      <div class="stat-item fade-up d2">
+        <span class="stat-num">100%</span>
+        <span class="stat-label">On-time delivery</span>
+      </div>
+      <div class="stat-item fade-up d3">
+        <span class="stat-num">15+</span>
+        <span class="stat-label">Years of expertise</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================
+     SERVICES
+     ====================================================== -->
+<section id="services" class="section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-tag">Our Services</span>
+      <h2>Built for Regulated Entities</h2>
+      <p>Specialised compliance and cybersecurity audits for India's financial sector — delivered on time, in exchange-ready format.</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card fade-up d1">
+        <div class="scard-header">
+          <div class="scard-badge">SEBI Mandated</div>
+          <h3>Stock Broker Audit</h3>
+          <p>Annual &amp; concurrent audits for trading members across NSE, BSE, MCX and NCDEX</p>
+          <div class="scard-icon" aria-hidden="true">
+            <svg width="88" height="88" viewBox="0 0 88 88" fill="none">
+              <line x1="44" y1="9"  x2="44" y2="79" stroke="white" stroke-width="3" stroke-linecap="round"/>
+              <line x1="17" y1="24" x2="71" y2="24" stroke="white" stroke-width="3" stroke-linecap="round"/>
+              <line x1="17" y1="24" x2="17" y2="49" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="71" y1="24" x2="71" y2="49" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M7 49 Q17 63 27 49"  stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <path d="M61 49 Q71 63 81 49" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <line x1="29" y1="79" x2="59" y2="79" stroke="white" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+        <div class="scard-body">
+          <ul class="feature-list">
+            <li>Client Fund Segregation &amp; Bank Reconciliation</li>
+            <li>Margin Reporting &amp; Peak Margin Compliance</li>
+            <li>Back-office System Controls &amp; Reconciliation</li>
+            <li>KYC / AML / CFT Process Review</li>
+            <li>Investor Grievance Redressal Mechanism</li>
+            <li>SEBI &amp; Exchange Circular Implementation Review</li>
+          </ul>
+          <p class="who-for-label">Who this is for</p>
+          <div class="who-tags">
+            <span class="who-tag">NSE / BSE Members</span>
+            <span class="who-tag">MCX / NCDEX</span>
+            <span class="who-tag">Depository Participants</span>
+            <span class="who-tag">PMS Providers</span>
+          </div>
+          <a href="#contact" class="btn-link">Get a scoping call →</a>
+        </div>
+      </div>
+
+      <div class="service-card fade-up d2">
+        <div class="scard-header cyber">
+          <div class="scard-badge">CERT-In · SEBI Cyber Circular</div>
+          <h3>Cyber Audit</h3>
+          <p>End-to-end cybersecurity audits aligned with SEBI CSCRF and CERT-In guidelines</p>
+          <div class="scard-icon" aria-hidden="true">
+            <svg width="88" height="88" viewBox="0 0 88 88" fill="none">
+              <path d="M44 7 L76 18.5 L76 47 Q76 70 44 80 Q12 70 12 47 L12 18.5 Z" stroke="white" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
+              <path d="M30 43 L38 51 L57 32" stroke="white" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+        <div class="scard-body">
+          <ul class="feature-list">
+            <li>Vulnerability Assessment &amp; Penetration Testing (VAPT)</li>
+            <li>Network Security Assessment (Firewall, IDS/IPS, DMZ)</li>
+            <li>Web &amp; Mobile Application Security Testing</li>
+            <li>IT Asset &amp; Configuration Hardening Audit</li>
+            <li>Data Localisation &amp; Privacy Controls Review</li>
+            <li>SEBI CSCRF Gap Analysis &amp; Compliance Mapping</li>
+          </ul>
+          <p class="who-for-label">Who this is for</p>
+          <div class="who-tags">
+            <span class="who-tag">Brokers with IT Infra</span>
+            <span class="who-tag">AMCs &amp; Custodians</span>
+            <span class="who-tag">Clearing Corporations</span>
+            <span class="who-tag">Fintech Entities</span>
+          </div>
+          <a href="#contact" class="btn-link">Assess your posture →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================
+     USE CASES
+     ====================================================== -->
+<section id="use-cases" class="section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-tag coral">Who We Work With</span>
+      <h2>Compliance challenges we solve</h2>
+    </div>
+    <div class="use-cases-grid">
+      <div class="use-case-card fade-up d1">
+        <span class="uc-num">01</span>
+        <h4>Stock Broker — Annual Audit</h4>
+        <p>Your exchange demands an annual audit report. We deliver it on time, with zero compliance gaps and full documentation for SEBI submission.</p>
+      </div>
+      <div class="use-case-card fade-up d2">
+        <span class="uc-num">02</span>
+        <h4>Broker IT Team — Cyber Circular</h4>
+        <p>SEBI's Cyber Security and Resilience Framework mandates annual audits. We assess, report, and help remediate before the deadline.</p>
+      </div>
+      <div class="use-case-card fade-up d1">
+        <span class="uc-num">03</span>
+        <h4>New NSE/BSE Member — Pre-inspection</h4>
+        <p>First exchange inspection coming up? We conduct mock audits against exchange checklists so you're never caught off-guard.</p>
+      </div>
+      <div class="use-case-card fade-up d2">
+        <span class="uc-num">04</span>
+        <h4>Fintech / Sub-broker — Third-Party Risk</h4>
+        <p>Platforms onboarding broker APIs must demonstrate security posture to their partners. We provide the audit reports they need.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================
+     PROCESS
+     ====================================================== -->
+<section id="process" class="section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-tag">How It Works</span>
+      <h2>Three steps to audit-ready</h2>
+      <p>From initial scoping to your final exchange-ready report — methodical, transparent, and on time.</p>
+    </div>
+    <div class="process-grid">
+      <div class="process-card fade-up d1">
+        <div class="proc-num">01</div>
+        <h4>Scope &amp; Onboarding</h4>
+        <p>We understand your entity type, exchange memberships, and regulatory obligations before a single document is reviewed.</p>
+      </div>
+      <div class="process-card fade-up d2">
+        <div class="proc-num">02</div>
+        <h4>Fieldwork &amp; Assessment</h4>
+        <p>On-site or remote audit, evidence collection, and control testing — methodical, thorough, and minimally disruptive to operations.</p>
+      </div>
+      <div class="process-card fade-up d3">
+        <div class="proc-num">03</div>
+        <h4>Report &amp; Remediation</h4>
+        <p>Detailed findings report, executive summary, and clear remediation guidance — delivered in exchange-ready format.</p>
+      </div>
+    </div>
+    <div class="process-cta fade-up">
+      <a href="#contact" class="btn btn-outline">Start your audit process →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================
+     ABOUT
+     ====================================================== -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="about-grid">
+      <div class="fade-up">
+        <span class="section-tag">The Firm</span>
+        <h2>Who is Auditspherre?</h2>
+        <p>Auditspherre is a specialist audit and compliance firm focused exclusively on India's regulated financial ecosystem. We work with stockbrokers, depository participants, and financial technology companies to ensure they meet their mandatory audit obligations.</p>
+        <p>Our auditors bring deep expertise in SEBI regulations, exchange compliance frameworks, and cybersecurity standards including ISO 27001, CERT-In guidelines, and the SEBI Cyber Security &amp; Cyber Resilience Framework.</p>
+        <ul class="creds-list">
+          <li>SEBI empanelled — NSE, BSE, MCX, NCDEX experience</li>
+          <li>CISA, CEH, and ISO 27001 Lead Auditor certifications</li>
+          <li>100% on-time delivery across 200+ engagements</li>
+          <li>Confidential — all clients under NDA from day one</li>
+          <li>Post-audit remediation support included as standard</li>
+        </ul>
+      </div>
+      <div class="expertise-stack fade-up d2">
+        <div class="exp-card">
+          <div class="exp-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <rect x="2" y="4" width="18" height="15" rx="2" stroke="#1B2CC1" stroke-width="1.2" fill="none"/>
+              <path d="M2 8h18M7 12h8M7 15h5" stroke="#1B2CC1" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+            </svg>
+          </div>
+          <div>
+            <h4>Regulatory Knowledge</h4>
+            <p>Deep familiarity with SEBI circulars, exchange bye-laws, and RBI frameworks — tracked in real time.</p>
+          </div>
+        </div>
+        <div class="exp-card">
+          <div class="exp-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <path d="M11 2 L19 5 L19 12 Q19 18 11 21 Q3 18 3 12 L3 5 Z" stroke="#1B2CC1" stroke-width="1.2" fill="none" stroke-linejoin="round"/>
+              <path d="M7.5 11l2 2 5-5" stroke="#1B2CC1" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <h4>Cybersecurity Depth</h4>
+            <p>Certified ethical hackers with CISA, CEH, and OSCP credentials — VAPT tailored to financial sector threats.</p>
+          </div>
+        </div>
+        <div class="exp-card">
+          <div class="exp-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <path d="M4 16 L4 10 M8 16 L8 6 M12 16 L12 11 M16 16 L16 4" stroke="#1B2CC1" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M3 16 h15" stroke="#1B2CC1" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+            </svg>
+          </div>
+          <div>
+            <h4>Financial Domain</h4>
+            <p>Auditors who understand order management, settlement cycles, and margin mechanics operationally.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================
+     TESTIMONIALS
+     ====================================================== -->
+<section id="testimonials" class="section">
+  <div class="container">
+    <div class="section-header fade-up" style="text-align:center; max-width:520px; margin:0 auto 3rem;">
+      <span class="section-tag coral" style="justify-content:center;">Client Voices</span>
+      <h2>What our clients say</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="tcard fade-up d1">
+        <span class="quote-icon">"</span>
+        <p class="tcard-text">Auditspherre delivered our SEBI annual audit report two weeks ahead of the exchange deadline. The team understood our broker setup immediately — no time wasted explaining basics.</p>
+        <div class="tcard-author">
+          <div class="author-avatar">RK</div>
+          <div>
+            <p class="author-name">Rajesh Kumar</p>
+            <p class="author-role">CFO, NSE Trading Member</p>
+            <p class="stars">★★★★★</p>
+          </div>
+        </div>
+      </div>
+      <div class="tcard fade-up d2">
+        <span class="quote-icon">"</span>
+        <p class="tcard-text">Our VAPT findings were actionable and prioritised. The SEBI CSCRF compliance report was exactly what our board and regulator needed. Highly professional engagement.</p>
+        <div class="tcard-author">
+          <div class="author-avatar">SP</div>
+          <div>
+            <p class="author-name">Sneha Patel</p>
+            <p class="author-role">Head of IT, Equity Broking Firm</p>
+            <p class="stars">★★★★★</p>
+          </div>
+        </div>
+      </div>
+      <div class="tcard fade-up d3">
+        <span class="quote-icon">"</span>
+        <p class="tcard-text">As a new BSE member, we were anxious about our first inspection. Auditspherre's mock audit found gaps we hadn't noticed. We passed inspection without a single observation.</p>
+        <div class="tcard-author">
+          <div class="author-avatar">AM</div>
+          <div>
+            <p class="author-name">Arun Mehta</p>
+            <p class="author-role">Director, New BSE Trading Member</p>
+            <p class="stars">★★★★★</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="t-note fade-up">Testimonials represent client experiences. Names changed for confidentiality.</p>
+  </div>
+</section>
+
+<!-- ======================================================
+     CONTACT
+     ====================================================== -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+
+      <div class="fade-up">
+        <span class="section-tag dim">— Get In Touch</span>
+        <h2 class="contact-h2">Request an Audit</h2>
+        <p class="contact-sub">Tell us about your entity and requirements. We'll respond within one business day.</p>
+
+        <form id="contact-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="fname">Full Name <span aria-hidden="true">*</span></label>
+              <input class="form-control" type="text" id="fname" name="full_name" placeholder="Rajesh Kumar" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="org">Organisation <span aria-hidden="true">*</span></label>
+              <input class="form-control" type="text" id="org" name="org_name" placeholder="ABC Securities Pvt. Ltd." required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="email">Email Address <span aria-hidden="true">*</span></label>
+              <input class="form-control" type="email" id="email" name="email" placeholder="rajesh@abcsecurities.in" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="phone">Phone Number</label>
+              <input class="form-control" type="tel" id="phone" name="phone" placeholder="+91 98765 43210">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="service">Service Required <span aria-hidden="true">*</span></label>
+            <select class="form-control" id="service" name="service" required>
+              <option value="" disabled selected>Select a service</option>
+              <option value="stock-broker">Stock Broker Audit</option>
+              <option value="cyber">Cyber Audit</option>
+              <option value="both">Both — Stock Broker &amp; Cyber Audit</option>
+              <option value="unsure">Not sure yet</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="msg">Brief Description</label>
+            <textarea class="form-control" id="msg" name="message" rows="3" placeholder="Entity type, exchange memberships, upcoming deadlines…"></textarea>
+          </div>
+          <button type="submit" class="btn btn-coral" style="width:100%;justify-content:center;">Submit Request</button>
+          <p class="form-note">We respond within 1 business day. All information is strictly confidential.</p>
+        </form>
+
+        <div class="form-success" id="form-success" role="alert" aria-live="polite">
+          <svg width="52" height="52" viewBox="0 0 52 52" fill="none" style="margin-bottom:1rem;" aria-hidden="true">
+            <circle cx="26" cy="26" r="25" stroke="#FF6B35" stroke-width="1.5" fill="none"/>
+            <path d="M15 26l8 8 14-14" stroke="#FF6B35" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          <h3>Request received</h3>
+          <p>Thank you. An auditor from Auditspherre will be in touch within one business day.</p>
+        </div>
+      </div>
+
+      <div class="contact-info-col fade-up d2">
+        <p class="ci-heading">Direct Contact</p>
+        <div class="ci-items">
+          <div class="ci-item">
+            <div class="ci-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <rect x="2" y="4" width="14" height="10" rx="1.5" stroke="rgba(255,255,255,0.55)" stroke-width="1.1" fill="none"/>
+                <path d="M2 6l7 5 7-5" stroke="rgba(255,255,255,0.55)" stroke-width="1.1" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <p class="ci-label">Email</p>
+              <p class="ci-value"><a href="mailto:contact@auditspherre.com">contact@auditspherre.com</a></p>
+            </div>
+          </div>
+          <div class="ci-item">
+            <div class="ci-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <path d="M4 3h2.5l1 3-1.5 1.5a9 9 0 003.5 3.5L11 9.5l3 1V13a1 1 0 01-1 1C5.5 14 3 6.5 3 4a1 1 0 011-1z" stroke="rgba(255,255,255,0.55)" stroke-width="1.1" fill="none" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <p class="ci-label">Phone</p>
+              <p class="ci-value">+91 XXXXX XXXXX</p>
+            </div>
+          </div>
+          <div class="ci-item">
+            <div class="ci-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <path d="M9 2C6.24 2 4 4.24 4 7c0 4 5 9 5 9s5-5 5-9c0-2.76-2.24-5-5-5z" stroke="rgba(255,255,255,0.55)" stroke-width="1.1" fill="none"/>
+                <circle cx="9" cy="7" r="1.5" stroke="rgba(255,255,255,0.55)" stroke-width="1" fill="none"/>
+              </svg>
+            </div>
+            <div>
+              <p class="ci-label">Location</p>
+              <p class="ci-value">Mumbai, India</p>
+            </div>
+          </div>
+        </div>
+        <div class="hours-box">
+          <p class="hours-box-title">Working Hours</p>
+          <div class="hours-row"><span class="day">Monday – Friday</span><span class="time">10:00 am – 6:00 pm IST</span></div>
+          <div class="hours-row"><span class="day">Saturday</span><span class="time">10:00 am – 2:00 pm IST</span></div>
+          <div class="hours-row"><span class="day">Sunday</span><span class="time">Closed</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================
+     FOOTER
+     ====================================================== -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">Audit<span>spherre</span></div>
+        <p class="footer-tagline">Precision. Compliance. Trust.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="#services">Stock Broker Audit</a></li>
+          <li><a href="#services">Cyber Audit</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#process">Our Process</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Auditspherre. All rights reserved.</p>
+      <span class="compliance-pill">SEBI empanelled auditors</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ======================================================
+     JAVASCRIPT
+     ====================================================== -->
+<script>
+  /* --- Navbar scroll --- */
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  /* --- Hamburger --- */
+  const hamburger = document.getElementById('hamburger');
+  const navLinks  = document.getElementById('nav-links');
+  hamburger.addEventListener('click', () => {
+    const open = hamburger.classList.toggle('open');
+    navLinks.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', open);
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      navLinks.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  /* --- Active nav on scroll --- */
+  const sections = document.querySelectorAll('section[id]');
+  const navAs    = document.querySelectorAll('.nav-links a');
+  new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navAs.forEach(a => a.classList.remove('active'));
+        const match = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+        if (match) match.classList.add('active');
+      }
+    });
+  }, { threshold: 0.35 }).observe || sections.forEach(s => {});
+  const secObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navAs.forEach(a => a.classList.remove('active'));
+        const m = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+        if (m) m.classList.add('active');
+      }
+    });
+  }, { threshold: 0.35 });
+  sections.forEach(s => secObs.observe(s));
+
+  /* --- Fade-up on scroll --- */
+  const fadeObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); fadeObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-up').forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      // Already in viewport — show immediately
+      setTimeout(() => el.classList.add('visible'), 80);
+    } else {
+      fadeObs.observe(el);
+    }
+  });
+
+  /* --- Counter animation --- */
+  const counterObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.querySelectorAll('.stat-num').forEach(el => {
+        const raw = el.textContent.trim();
+        const num = parseInt(raw);
+        const sfx = raw.replace(/[0-9]/g, '');
+        let c = 0;
+        const step = Math.ceil(num / 60);
+        const t = setInterval(() => {
+          c = Math.min(c + step, num);
+          el.textContent = c + sfx;
+          if (c >= num) clearInterval(t);
+        }, 28);
+      });
+      counterObs.unobserve(e.target);
+    });
+  }, { threshold: 0.5 });
+  const statsEl = document.getElementById('stats');
+  if (statsEl) counterObs.observe(statsEl);
+
+  /* --- Contact form --- */
+  const form    = document.getElementById('contact-form');
+  const success = document.getElementById('form-success');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    let ok = true;
+    form.querySelectorAll('[required]').forEach(f => {
+      f.style.borderColor = '';
+      if (!f.value.trim()) { f.style.borderColor = 'var(--coral)'; ok = false; }
+    });
+    if (!ok) return;
+    form.style.display = 'none';
+    success.classList.add('visible');
+    success.focus();
+  });
+  form.querySelectorAll('.form-control').forEach(f => {
+    f.addEventListener('input', () => f.style.borderColor = '');
+  });
+
+  /* --- Hero floating cards slider --- */
+  (function() {
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots   = document.querySelectorAll('.slide-dot');
+    const fill   = document.getElementById('slide-fill');
+    if (!slides.length || !fill) return;
+    const DURATION = 4000;
+    let current = 0, timer = null;
+
+    function goTo(idx) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = (idx + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+      startProgress();
+    }
+
+    function startProgress() {
+      fill.style.transition = 'none';
+      fill.style.width = '0%';
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        fill.style.transition = 'width ' + DURATION + 'ms linear';
+        fill.style.width = '100%';
+      }));
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(() => goTo(current + 1), DURATION);
+    }
+
+    dots.forEach((dot, i) => dot.addEventListener('click', () => { clearTimeout(timer); goTo(i); }));
+    startProgress();
+  })();
+</script>
+</body>
+</html>

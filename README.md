@@ -1,62 +1,46 @@
-# AuditSpherre
+# Auditspherre
 
-AuditSpherre is a file server auditing and monitoring platform for Windows and Linux environments. Track file changes, review activity logs, and improve visibility across shared storage.
+**Precision. Compliance. Trust.**
+
+Auditspherre is a professional audit firm website for SEBI-mandated stock broker audits and cybersecurity audits serving regulated entities in India.
 
 **Repository**: [github.com/akkucius/auditspherre](https://github.com/akkucius/auditspherre)
 
 ## Status
 
-Early development — project scaffold and web UI foundation.
+MVP scaffold — homepage, services, about, and contact pages implemented from the design brief.
 
 ## Tech Stack
 
-- [Next.js](https://nextjs.org/) — web application
-- [React](https://react.dev/) — UI
-- [Tailwind CSS](https://tailwindcss.com/) — styling
+- [Next.js](https://nextjs.org/) 13
+- [React](https://react.dev/) 18
+- [Tailwind CSS](https://tailwindcss.com/)
 
 ## Getting Started
 
-### Prerequisites
-
-- Node.js 18+
-- npm
-
-### Install
-
 ```bash
 npm install
-```
-
-### Development
-
-```bash
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
 
-### Production
+## Pages
 
-```bash
-npm run build
-npm start
-```
+| Page | Route |
+|------|-------|
+| Homepage | `/` |
+| Services | `/services` |
+| About | `/about` |
+| Contact | `/contact` |
 
-## Project Structure
+## Design Brief
 
-```
-auditspherre/
-├── components/       # Shared UI components
-├── pages/            # Next.js routes
-├── public/           # Static assets
-├── styles/           # Global styles
-├── .env.example      # Environment variable template
-└── package.json
-```
+See `auditspherre-site-prompt.md` for the full content, brand, and layout specification.
 
 ## Environment Variables
 
-Copy `.env.example` to `.env.local` and fill in values as features are added.
+Copy `.env.example` to `.env.local` when backend integrations are added.
 
 ## License
 

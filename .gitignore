@@ -42,6 +42,13 @@ pnpm-debug.log*
 .env*.local
 .env.local
 
+# generated design previews (built from design/claude-design)
+/public/v1
+/public/v2
+/public/v3
+/public/v4
+/public/v5
+
 # vercel
 .vercel
 

@@ -2,6 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-bg-primary: #0c1220;
+  --color-bg-surface: #131c2e;
+  --color-bg-card: #1a2540;
+  --color-accent: #c9a84c;
+  --color-accent-alt: #3eb8a0;
+  --color-text-primary: #f2f0eb;
+  --color-text-secondary: #8b9cb5;
+  --color-border: #2a3550;
+  --color-danger: #e05c5c;
+}
+
 body {
-  @apply bg-slate-950 text-slate-100 antialiased;
+  @apply bg-navy-primary text-cream antialiased;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
+@layer components {
+  .section-label {
+    @apply text-xs font-semibold uppercase tracking-[0.2em] text-gold;
+  }
+
+  .section-heading {
+    @apply text-3xl font-semibold tracking-tight text-cream sm:text-4xl;
+  }
+
+  .surface-card {
+    @apply rounded-xl border border-navy-border bg-navy-card p-6;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-md bg-gold px-5 py-2.5 text-sm font-semibold text-navy-primary transition hover:bg-gold/90;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-md border border-navy-border px-5 py-2.5 text-sm font-semibold text-cream transition hover:border-gold hover:text-gold;
+  }
+
+  .gold-rule {
+    @apply h-px w-16 bg-gold;
+  }
 }

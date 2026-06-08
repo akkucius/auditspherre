@@ -4,7 +4,10 @@
   "description": "File server auditing and monitoring platform",
   "private": true,
   "scripts": {
+    "copy-designs": "node scripts/copy-designs.js",
+    "predev": "npm run copy-designs",
     "dev": "next dev",
+    "prebuild": "npm run copy-designs",
     "build": "next build",
     "start": "next start"
   },
