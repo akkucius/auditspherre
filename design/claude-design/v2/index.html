@@ -3,144 +3,65 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Auditspherre — Precision. Compliance. Trust.</title>
+  <title>AuditSpherre — Precision. Compliance. Trust.</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="shared.css">
   <style>
-    /* === HERO === */
-    .hero {
-      min-height: 100vh;
-      padding-top: var(--nav-height);
-      background:
-        radial-gradient(ellipse 65% 80% at 78% 42%, rgba(201,168,76,0.07) 0%, transparent 65%),
-        linear-gradient(rgba(42,53,80,0.14) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(42,53,80,0.14) 1px, transparent 1px),
-        var(--color-bg-primary);
-      background-size: auto, 64px 64px, 64px 64px;
-      display: flex;
-      flex-direction: column;
-    }
+    .hero { min-height: 100vh; padding-top: var(--nav-height); background: radial-gradient(ellipse 60% 70% at 78% 42%, rgba(45,106,79,0.08) 0%, transparent 65%), var(--color-bg-primary); display: flex; flex-direction: column; }
     .hero-main { flex: 1; display: flex; align-items: center; padding: 4rem 0; }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-      width: 100%;
-    }
-    .hero-text { display: flex; flex-direction: column; }
-    .hero-eyebrow {
-      display: flex; align-items: center; gap: 0.75rem;
-      font-size: 0.67rem; font-weight: 600; letter-spacing: 0.22em;
-      text-transform: uppercase; color: var(--color-accent);
-      margin-bottom: 1.5rem;
-    }
-    .hero-eyebrow::before { content: ''; width: 2rem; height: 1px; background: var(--color-accent); display: block; flex-shrink: 0; }
-    .hero h1 { font-size: clamp(2.2rem, 3.2vw, 3.4rem); margin-bottom: 2.5rem; line-height: 1.15; }
-    .hero-sub { font-size: 1.02rem; line-height: 1.75; max-width: 520px; margin-bottom: 2.5rem; }
-    .hero-ctas { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
-    .hero-sphere-wrap { display: flex; justify-content: center; align-items: center; }
-    .hero-sphere-svg { width: 100%; max-width: 460px; height: auto; }
-    .hero-trust { flex-shrink: 0; }
-    .orbit-ring { transform-box: fill-box; transform-origin: center; animation: orbit-spin 28s linear infinite; }
-    .sphere-glow-el { animation: sphere-pulse 5s ease-in-out infinite; }
+    .hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 4rem; align-items: center; width: 100%; }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 0.65rem; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-green-mid); margin-bottom: 1.5rem; }
+    .hero-eyebrow::before { content: ''; width: 1.75rem; height: 2px; background: var(--color-green-mid); display: block; flex-shrink: 0; border-radius: 2px; }
+    .hero-sub { font-size: 1.05rem; line-height: 1.78; max-width: 520px; margin-bottom: 2.5rem; color: var(--color-text-secondary); }
+    .hero-ctas { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+    .trust-strip { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .trust-pill { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-green); padding: 0.28rem 0.8rem; border: 1px solid var(--color-green-tint); border-radius: var(--radius-pill); background: var(--color-green-ghost); }
 
-    /* === TRUST BAR === */
-    .trust-bar {
-      border-top: 1px solid var(--color-border);
-      padding: 1.6rem 0;
-      display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
-    }
-    .trust-label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-secondary); white-space: nowrap; }
-    .trust-entities { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
-    .trust-entities span { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-text-secondary); opacity: 0.65; }
-    .trust-dot { opacity: 0.3 !important; letter-spacing: 0 !important; }
+    /* Services preview */
+    .services-preview { background: var(--color-bg-surface); }
+    .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem; }
 
-    /* === WHAT WE DO === */
-    .service-cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem; }
-    .service-card { display: block; }
-    .service-icon { margin-bottom: 1.75rem; }
-    .service-card h3 { margin-bottom: 1rem; }
-    .service-card > p { font-size: 0.925rem; margin-bottom: 1.75rem; }
+    /* Stats */
+    .stats-band { background: var(--color-green-dark); padding: 4rem 0; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); }
+    .stat-item { padding: 2rem 1rem; text-align: center; border-right: 1px solid rgba(255,255,255,0.1); }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { font-size: clamp(2.5rem,4vw,4rem); font-weight: 800; color: #fff; display: block; line-height: 1; margin-bottom: 0.5rem; letter-spacing: -0.04em; }
+    .stat-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
 
-    /* === USE CASES === */
-    .use-cases { background: var(--color-bg-surface); }
-    .use-cases-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 1px; background: var(--color-border);
-      border: 1px solid var(--color-border); border-radius: 5px;
-      overflow: hidden; margin-top: 3rem;
-    }
-    .use-case-tile { background: var(--color-bg-card); padding: 2.5rem; transition: background 0.25s; }
-    .use-case-tile:hover { background: #1e2d4a; }
-    .use-case-num {
-      font-family: var(--font-display); font-size: 2.5rem; font-weight: 600;
-      color: var(--color-accent); opacity: 0.28; display: block;
-      line-height: 1; margin-bottom: 1rem;
-    }
-    .use-case-tile h4 { margin-bottom: 0.75rem; }
-    .use-case-tile p { font-size: 0.875rem; }
+    /* CTA */
+    .cta-band { background: var(--color-green-dark); }
+    .cta-box { border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.04); border-radius: var(--radius-lg); padding: 3.5rem; display: flex; align-items: center; justify-content: space-between; gap: 3rem; }
+    .cta-quote { font-size: clamp(1.4rem,2.5vw,2rem); font-weight: 700; color: #fff; margin-bottom: 0.6rem; letter-spacing: -0.02em; }
+    .cta-sub { font-size: 0.9rem; color: rgba(255,255,255,0.6); max-width: 420px; }
 
-    /* === STATS === */
-    .stats-band { background: var(--color-bg-surface); }
-    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center; }
-    .stat-divider { width: 1px; background: var(--color-border); }
-    .stat-num { font-family: var(--font-display); font-size: clamp(3rem, 4.5vw, 4.5rem); font-weight: 600; color: var(--color-accent); line-height: 1; margin-bottom: 0.6rem; display: block; }
-    .stat-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-secondary); }
-
-    /* === PROCESS === */
-    .process-steps { display: grid; grid-template-columns: repeat(3, 1fr); margin: 3.5rem 0 2.5rem; }
-    .process-step { padding: 0 2.5rem; border-left: 1px solid var(--color-border); }
-    .process-step:first-child { border-left: none; padding-left: 0; }
-    .step-num { font-family: var(--font-display); font-size: 2.5rem; font-weight: 600; color: var(--color-accent); opacity: 0.35; display: block; line-height: 1; margin-bottom: 1.25rem; }
-    .process-step h4 { margin-bottom: 0.65rem; font-size: 1rem; }
-    .process-step p { font-size: 0.875rem; }
-    .process-cta { text-align: center; padding-top: 1rem; }
-
-    /* === CTA BAND === */
-    .cta-band { background: var(--color-bg-primary); }
-    .cta-box {
-      border: 1px solid rgba(201,168,76,0.28);
-      background: linear-gradient(135deg, rgba(201,168,76,0.05) 0%, rgba(62,184,160,0.025) 100%);
-      border-radius: 5px; padding: 3.5rem;
-      display: flex; align-items: center; justify-content: space-between; gap: 3rem;
-    }
-    .cta-quote { font-family: var(--font-display); font-size: clamp(1.5rem, 2.5vw, 2rem); font-style: italic; color: var(--color-text-primary); margin-bottom: 0.6rem; }
-    .cta-sub { font-size: 0.925rem; max-width: 480px; }
-
-    /* === TABLET (≤1024px) === */
-    @media (max-width: 1024px) {
-      .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .hero-sphere-wrap { display: none; }
-      .service-cards-grid { grid-template-columns: 1fr; }
-      .process-steps { grid-template-columns: 1fr; }
-      .process-step { border-left: none; border-top: 1px solid var(--color-border); padding: 2rem 0 0; margin-top: 2rem; }
-      .process-step:first-child { border-top: none; padding-top: 0; margin-top: 0; }
-      .cta-box { flex-direction: column; align-items: flex-start; padding: 2rem; }
-    }
-
-    /* === MOBILE (≤768px) === */
-    @media (max-width: 768px) {
-      .use-cases-grid { grid-template-columns: 1fr; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem 1rem; }
-    }
+    @media (max-width: 1024px) { .hero-grid { grid-template-columns: 1fr; } .hero-visual { display: none; } .services-grid { grid-template-columns: 1fr; } .cta-box { flex-direction: column; align-items: flex-start; padding: 2.5rem; } .stats-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 768px) { .hero-ctas { flex-direction: column; align-items: flex-start; } .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); } }
   </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
 <nav class="navbar" id="navbar">
   <div class="navbar-inner">
-    <a href="index.html" class="logo">Audit<span class="accent">spherre</span></a>
+    <a href="index.html" class="logo-link" aria-label="AuditSpherre home">
+      <svg height="38" viewBox="0 0 210 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15 2 L28 6.5 L28 21 Q28 32 15 37 Q2 32 2 21 L2 6.5 Z" fill="#2D6A4F"/>
+        <path d="M15 2 L28 6.5" stroke="#FF6B35" stroke-width="2" stroke-linecap="round"/>
+        <path d="M8.5 20 L13.5 25 L22 14" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <text x="38" y="25" font-family="'Plus Jakarta Sans',system-ui,sans-serif" font-weight="800" font-size="19" letter-spacing="-0.4"><tspan fill="#1A1C1A">Audit</tspan><tspan fill="#2D6A4F">Spherre</tspan></text>
+        <line x1="38" y1="30" x2="207" y2="30" stroke="#FF6B35" stroke-width="1.5" stroke-linecap="round" opacity="0.45"/>
+      </svg>
+    </a>
     <ul class="nav-links" id="nav-links">
-      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html" class="active">Home</a></li>
       <li><a href="services.html">Services</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
     <a href="contact.html" class="btn btn-primary nav-cta">Request an Audit</a>
-    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
@@ -149,229 +70,109 @@
   <div class="hero-main">
     <div class="container">
       <div class="hero-grid">
-        <div class="hero-text">
-          <div class="hero-eyebrow">Audit &amp; Compliance Services</div>
-          <h1>Audit Intelligence<br>for India's<br>Financial Markets</h1>
-          <p class="hero-sub">Auditspherre delivers SEBI-mandated stock broker audits and comprehensive cyber audits — helping regulated entities stay compliant, secure, and inspection-ready.</p>
+        <div>
+          <div class="hero-eyebrow">India's Specialist Audit Firm</div>
+          <h1>Audit Intelligence<br>for India's <span style="color:var(--color-green);">Financial Markets</span></h1>
+          <p class="hero-sub">AuditSpherre delivers SEBI-mandated stock broker audits and comprehensive cyber audits — helping regulated entities stay compliant, secure, and inspection-ready.</p>
           <div class="hero-ctas">
-            <a href="services.html" class="btn btn-primary">Explore Our Services</a>
-            <a href="contact.html" class="btn btn-ghost">Talk to an Auditor</a>
+            <a href="contact.html" class="btn btn-primary">Start Your Audit</a>
+            <a href="services.html" class="btn btn-ghost">Explore Services</a>
+          </div>
+          <div class="trust-strip">
+            <span style="font-size:0.68rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-text-muted);">Regulated under</span>
+            <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+              <span class="trust-pill">SEBI</span>
+              <span class="trust-pill">RBI</span>
+              <span class="trust-pill">MCA</span>
+              <span class="trust-pill">CERT-In</span>
+            </div>
           </div>
         </div>
-        <div class="hero-sphere-wrap" aria-hidden="true">
-          <svg class="hero-sphere-svg" width="480" height="480" viewBox="0 0 480 480" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <radialGradient id="sphereGlow" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#C9A84C" stop-opacity="0.14"/>
-                <stop offset="55%" stop-color="#C9A84C" stop-opacity="0.04"/>
-                <stop offset="100%" stop-color="#C9A84C" stop-opacity="0"/>
-              </radialGradient>
-              <clipPath id="sph"><circle cx="240" cy="240" r="200"/></clipPath>
-            </defs>
-            <!-- Ambient glow -->
-            <circle cx="240" cy="240" r="238" fill="url(#sphereGlow)" class="sphere-glow-el"/>
-            <!-- Inner grid clipped to sphere -->
-            <g clip-path="url(#sph)">
-              <ellipse cx="240" cy="88"  rx="130" ry="17" stroke="#C9A84C" stroke-width="0.6" opacity="0.2"  fill="none"/>
-              <ellipse cx="240" cy="145" rx="173" ry="22" stroke="#C9A84C" stroke-width="0.6" opacity="0.26" fill="none"/>
-              <ellipse cx="240" cy="195" rx="197" ry="26" stroke="#C9A84C" stroke-width="0.65" opacity="0.3" fill="none"/>
-              <ellipse cx="240" cy="240" rx="200" ry="30" stroke="#C9A84C" stroke-width="0.8" opacity="0.38" fill="none"/>
-              <ellipse cx="240" cy="285" rx="197" ry="26" stroke="#C9A84C" stroke-width="0.65" opacity="0.3" fill="none"/>
-              <ellipse cx="240" cy="335" rx="173" ry="22" stroke="#C9A84C" stroke-width="0.6" opacity="0.26" fill="none"/>
-              <ellipse cx="240" cy="392" rx="130" ry="17" stroke="#C9A84C" stroke-width="0.6" opacity="0.2"  fill="none"/>
-              <ellipse cx="240" cy="240" rx="28"  ry="200" stroke="#C9A84C" stroke-width="0.6" opacity="0.24" fill="none"/>
-              <ellipse cx="240" cy="240" rx="90"  ry="200" stroke="#C9A84C" stroke-width="0.6" opacity="0.27" fill="none"/>
-              <ellipse cx="240" cy="240" rx="155" ry="200" stroke="#C9A84C" stroke-width="0.6" opacity="0.24" fill="none"/>
-              <ellipse cx="240" cy="240" rx="196" ry="200" stroke="#C9A84C" stroke-width="0.5" opacity="0.18" fill="none"/>
-            </g>
-            <!-- Sphere boundary -->
-            <circle cx="240" cy="240" r="200" stroke="#C9A84C" stroke-width="1" opacity="0.48" fill="none"/>
-            <!-- Orbital ring -->
-            <ellipse cx="240" cy="240" rx="248" ry="64" stroke="#C9A84C" stroke-width="0.5" opacity="0.18" stroke-dasharray="5 12" fill="none" transform="rotate(-22 240 240)" class="orbit-ring"/>
-            <!-- Highlight arc -->
-            <path d="M 332 86 A 200 200 0 0 1 440 240" stroke="#C9A84C" stroke-width="1.5" opacity="0.32" fill="none" stroke-linecap="round"/>
-            <!-- Pole nodes -->
-            <circle cx="240" cy="40"  r="4" fill="#C9A84C" opacity="0.95"/>
-            <circle cx="440" cy="240" r="4" fill="#C9A84C" opacity="0.95"/>
-            <circle cx="240" cy="440" r="3" fill="#C9A84C" opacity="0.45"/>
-            <circle cx="40"  cy="240" r="3" fill="#C9A84C" opacity="0.45"/>
-            <!-- Grid intersection accents -->
-            <circle cx="355" cy="168" r="2.5" fill="#C9A84C" opacity="0.65"/>
-            <circle cx="125" cy="312" r="2.5" fill="#C9A84C" opacity="0.65"/>
-            <circle cx="397" cy="240" r="2"   fill="#C9A84C" opacity="0.45"/>
-            <circle cx="332" cy="112" r="2"   fill="#C9A84C" opacity="0.45"/>
-          </svg>
+        <div class="hero-visual" style="display:flex;flex-direction:column;gap:1rem;">
+          <div class="card" style="padding:1.75rem;">
+            <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-green-mid);margin-bottom:0.75rem;">SEBI Mandated</div>
+            <h4 style="margin-bottom:0.75rem;">Stock Broker Audit</h4>
+            <ul class="coverage-list" style="grid-template-columns:1fr;gap:0.5rem;margin:0;">
+              <li>Client Fund Segregation</li>
+              <li>Peak Margin Compliance</li>
+              <li>KYC / AML Review</li>
+            </ul>
+          </div>
+          <div class="card" style="padding:1.75rem;">
+            <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-sapphire);margin-bottom:0.75rem;">CERT-In · SEBI CSCRF</div>
+            <h4 style="margin-bottom:0.75rem;">Cyber Audit</h4>
+            <ul class="coverage-list" style="grid-template-columns:1fr;gap:0.5rem;margin:0;">
+              <li>VAPT Assessment</li>
+              <li>SEBI CSCRF Gap Analysis</li>
+              <li>Incident Response Review</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <!-- Trust bar -->
-  <div class="hero-trust">
-    <div class="container">
-      <div class="trust-bar">
-      <span class="trust-label">Trusted by entities regulated under</span>
-      <div class="trust-entities">
-        <span>SEBI</span>
-        <span class="trust-dot">·</span>
-        <span>RBI</span>
-        <span class="trust-dot">·</span>
-        <span>MCA</span>
-        <span class="trust-dot">·</span>
-        <span>CERT-In</span>
+  <div style="border-top:1px solid var(--color-border);padding:1.4rem 0;">
+    <div class="container" style="display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
+      <span style="font-size:0.68rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-text-muted);">Trusted by entities regulated under</span>
+      <div style="display:flex;gap:1.25rem;flex-wrap:wrap;">
+        <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-green);opacity:0.6;">SEBI</span>
+        <span style="opacity:0.25;">·</span>
+        <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-green);opacity:0.6;">RBI</span>
+        <span style="opacity:0.25;">·</span>
+        <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-green);opacity:0.6;">MCA</span>
+        <span style="opacity:0.25;">·</span>
+        <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-green);opacity:0.6;">CERT-In</span>
       </div>
-    </div>
     </div>
   </div>
 </section>
 
-<div class="section-divider"></div>
-
-<!-- WHAT WE DO -->
-<section class="section">
-  <div class="container">
-    <span class="section-label">Our Services</span>
-    <h2>Built for Regulated Entities</h2>
-    <div class="service-cards-grid">
-
-      <a href="services.html#stock-broker-audit" class="card service-card">
-        <div class="service-icon">
-          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <line x1="22" y1="5"  x2="22" y2="39" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
-            <line x1="9"  y1="12" x2="35" y2="12" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
-            <line x1="9"  y1="12" x2="9"  y2="24" stroke="#C9A84C" stroke-width="1.2" stroke-linecap="round"/>
-            <line x1="35" y1="12" x2="35" y2="24" stroke="#C9A84C" stroke-width="1.2" stroke-linecap="round"/>
-            <path d="M5 24 Q9 31 13 24" stroke="#C9A84C" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-            <path d="M31 24 Q35 31 39 24" stroke="#C9A84C" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-            <line x1="15" y1="39" x2="29" y2="39" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <h3>Stock Broker Audit</h3>
-        <p>Comprehensive annual and concurrent audits for SEBI-registered stock brokers, sub-brokers, and depository participants. Covering internal controls, client fund segregation, margin reporting, and exchange compliance.</p>
-        <span class="btn-link">See what's covered →</span>
-      </a>
-
-      <a href="services.html#cyber-audit" class="card service-card">
-        <div class="service-icon">
-          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M22 4 L37 9.5 L37 23 Q37 34 22 40 Q7 34 7 23 L7 9.5 Z" stroke="#C9A84C" stroke-width="1.3" fill="none" stroke-linejoin="round"/>
-            <path d="M15 22 L19.5 26.5 L29 17" stroke="#C9A84C" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="22" cy="15" r="1.5" fill="#C9A84C" opacity="0.4"/>
-            <path d="M18 15 h2 M24 15 h2" stroke="#C9A84C" stroke-width="1" stroke-linecap="round" opacity="0.4"/>
-          </svg>
-        </div>
-        <h3>Cyber Audit</h3>
-        <p>End-to-end cybersecurity audits — VAPT, network security assessment, application security review, and SEBI Cyber Security Circular compliance — for brokers, AMCs, and IT infrastructure teams.</p>
-        <span class="btn-link">See what's covered →</span>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- USE CASES -->
-<section class="section use-cases">
-  <div class="container">
-    <span class="section-label">Who We Work With</span>
-    <h2>Compliance challenges we solve</h2>
-    <div class="use-cases-grid">
-
-      <div class="use-case-tile">
-        <span class="use-case-num">01</span>
-        <h4>Stock Broker — Annual Audit</h4>
-        <p>Your exchange demands an annual audit report. We deliver it on time, with zero compliance gaps and full documentation for SEBI submission.</p>
-      </div>
-
-      <div class="use-case-tile">
-        <span class="use-case-num">02</span>
-        <h4>Broker IT Team — Cyber Circular Compliance</h4>
-        <p>SEBI's Cyber Security and Cyber Resilience Framework mandates annual audits. We assess, report, and help you remediate before the deadline.</p>
-      </div>
-
-      <div class="use-case-tile">
-        <span class="use-case-num">03</span>
-        <h4>New NSE/BSE Member — Pre-inspection Readiness</h4>
-        <p>First exchange inspection coming up? We conduct mock audits against exchange checklists so you're never caught off-guard.</p>
-      </div>
-
-      <div class="use-case-tile">
-        <span class="use-case-num">04</span>
-        <h4>Fintech / Sub-broker — Third-Party Risk</h4>
-        <p>Platforms onboarding broker APIs must demonstrate security posture to their partners. We provide the audit reports they need.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- STATS BAND -->
-<section class="section-sm stats-band grid-pattern" aria-label="Key statistics">
+<!-- STATS -->
+<div class="stats-band">
   <div class="container">
     <div class="stats-grid">
-      <div class="stat">
-        <span class="stat-num" data-target="200" data-suffix="+">200+</span>
-        <span class="stat-label">Audits completed</span>
-      </div>
-      <div class="stat">
-        <span class="stat-num" data-target="50" data-suffix="+">50+</span>
-        <span class="stat-label">Broker clients served</span>
-      </div>
-      <div class="stat">
-        <span class="stat-num" data-target="100" data-suffix="%">100%</span>
-        <span class="stat-label">On-time delivery</span>
-      </div>
-      <div class="stat">
-        <span class="stat-num" data-target="15" data-suffix="+">15+</span>
-        <span class="stat-label">Years of regulatory expertise</span>
-      </div>
+      <div class="stat-item"><span class="stat-num">200+</span><span class="stat-label">Audits Completed</span></div>
+      <div class="stat-item"><span class="stat-num">50+</span><span class="stat-label">Broker Clients</span></div>
+      <div class="stat-item"><span class="stat-num">100%</span><span class="stat-label">On-time Delivery</span></div>
+      <div class="stat-item"><span class="stat-num">15+</span><span class="stat-label">Years Expertise</span></div>
     </div>
   </div>
-</section>
+</div>
 
-<div class="section-divider"></div>
-
-<!-- PROCESS -->
-<section class="section">
+<!-- SERVICES PREVIEW -->
+<section class="section services-preview">
   <div class="container">
-    <span class="section-label">How It Works</span>
-    <h2>How an Auditspherre audit works</h2>
-    <div class="process-steps">
-      <div class="process-step">
-        <span class="step-num">01</span>
-        <h4>Scope &amp; Onboarding</h4>
-        <p>We understand your entity type, exchange memberships, and regulatory obligations before a single document is reviewed.</p>
-      </div>
-      <div class="process-step">
-        <span class="step-num">02</span>
-        <h4>Fieldwork &amp; Assessment</h4>
-        <p>On-site or remote audit, evidence collection, and control testing — methodical, thorough, and minimally disruptive to operations.</p>
-      </div>
-      <div class="process-step">
-        <span class="step-num">03</span>
-        <h4>Report &amp; Remediation</h4>
-        <p>Detailed findings report, executive summary, and clear remediation guidance — delivered in exchange-ready format.</p>
-      </div>
+    <div class="section-header" style="max-width:600px;margin-bottom:3.5rem;">
+      <span class="section-label">Our Services</span>
+      <h2>Built for Regulated Entities</h2>
+      <p style="margin-top:0.75rem;">Specialised compliance and cybersecurity audits for India's financial sector.</p>
     </div>
-    <div class="process-cta">
-      <a href="contact.html" class="btn btn-ghost">Start your audit process →</a>
+    <div class="services-grid">
+      <div class="card">
+        <div class="service-icon"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><line x1="13" y1="2" x2="13" y2="24" stroke="#40916C" stroke-width="2" stroke-linecap="round"/><line x1="5" y1="7" x2="21" y2="7" stroke="#40916C" stroke-width="2" stroke-linecap="round"/><line x1="5" y1="7" x2="5" y2="14" stroke="#40916C" stroke-width="1.5" stroke-linecap="round"/><line x1="21" y1="7" x2="21" y2="14" stroke="#40916C" stroke-width="1.5" stroke-linecap="round"/><path d="M2 14 Q5 19 8 14" stroke="#40916C" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M18 14 Q21 19 24 14" stroke="#40916C" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+        <h3>Stock Broker Audit</h3>
+        <p style="font-size:0.9rem;margin-bottom:1.5rem;">Annual & concurrent audits for trading members across NSE, BSE, MCX and NCDEX — delivered in exchange-ready format.</p>
+        <a href="services.html#stock-broker" class="btn-link">Learn more →</a>
+      </div>
+      <div class="card">
+        <div class="service-icon"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M13 2 L23 6 L23 15 Q23 22 13 25 Q3 22 3 15 L3 6 Z" stroke="#40916C" stroke-width="1.5" fill="none" stroke-linejoin="round"/><path d="M8 13l3.5 3.5 6.5-7" stroke="#40916C" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Cyber Audit</h3>
+        <p style="font-size:0.9rem;margin-bottom:1.5rem;">End-to-end cybersecurity audits aligned with SEBI CSCRF and CERT-In guidelines — VAPT, gap analysis, and remediation support.</p>
+        <a href="services.html#cyber" class="btn-link">Learn more →</a>
+      </div>
     </div>
   </div>
 </section>
 
-<div class="section-divider"></div>
-
-<!-- CTA BAND -->
-<section class="cta-band section-sm">
+<!-- CTA -->
+<section class="section cta-band">
   <div class="container">
     <div class="cta-box">
       <div>
-        <p class="cta-quote">"Regulatory deadlines don't wait."</p>
-        <p class="cta-sub">Book a scoping call today — we'll tell you exactly what your audit requires.</p>
+        <div class="cta-quote">Ready to get compliant?</div>
+        <p class="cta-sub">Let's start with a scoping call. We'll understand your entity, obligations, and timelines — no commitment required.</p>
       </div>
-      <a href="contact.html" class="btn btn-primary">Request an Audit</a>
+      <a href="contact.html" class="btn btn-white" style="flex-shrink:0;">Request an Audit</a>
     </div>
   </div>
 </section>
@@ -380,28 +181,29 @@
 <footer>
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-col">
-        <a href="index.html" class="logo">Audit<span class="accent">spherre</span></a>
+      <div>
+        <a href="index.html" class="logo-link">
+          <svg height="32" viewBox="0 0 210 38" fill="none">
+            <path d="M15 2 L28 6.5 L28 21 Q28 32 15 37 Q2 32 2 21 L2 6.5 Z" fill="#52B788"/>
+            <path d="M15 2 L28 6.5" stroke="#FF6B35" stroke-width="2" stroke-linecap="round"/>
+            <path d="M8.5 20 L13.5 25 L22 14" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <text x="38" y="25" font-family="'Plus Jakarta Sans',system-ui,sans-serif" font-weight="800" font-size="19" letter-spacing="-0.4"><tspan fill="#fff">Audit</tspan><tspan fill="#52B788">Spherre</tspan></text>
+          </svg>
+        </a>
         <p class="footer-tagline">Precision. Compliance. Trust.</p>
       </div>
       <div class="footer-col">
         <h5>Services</h5>
-        <ul>
-          <li><a href="services.html#stock-broker-audit">Stock Broker Audit</a></li>
-          <li><a href="services.html#cyber-audit">Cyber Audit</a></li>
-        </ul>
+        <ul><li><a href="services.html">Stock Broker Audit</a></li><li><a href="services.html">Cyber Audit</a></li></ul>
       </div>
       <div class="footer-col">
         <h5>Company</h5>
-        <ul>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
+        <ul><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li></ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2026 Auditspherre. All rights reserved.</p>
-      <span class="compliance-note">Registered audit firm · SEBI empanelled auditors</span>
+      <p>© 2026 AuditSpherre. All rights reserved.</p>
+      <span class="compliance-note">SEBI empanelled auditors</span>
     </div>
   </div>
 </footer>

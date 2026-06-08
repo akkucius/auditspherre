@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AuditSpherre — Logo Variations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cobalt:       #1B2CC1;
+      --cobalt-dark:  #101D8F;
+      --cobalt-mid:   #3547D4;
+      --cobalt-light: #4A5BE8;
+      --cobalt-tint:  #EEF0FD;
+      --coral:        #FF6B35;
+      --coral-dark:   #E85820;
+      --dark:         #0C1230;
+      --darker:       #07091A;
+      --text:         #0D0F1E;
+      --text-2:       #475569;
+      --border:       #E1E4F5;
+      --font: 'Plus Jakarta Sans', system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font);
+      background: #F0F1FA;
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* PAGE HEADER */
+    .page-header {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      padding: 2.5rem 3rem;
+      display: flex; align-items: flex-start; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .page-header h1 {
+      font-size: 1.4rem; font-weight: 800; letter-spacing: -0.025em; color: var(--cobalt);
+    }
+    .page-header p { font-size: 0.875rem; color: var(--text-2); margin-top: 0.25rem; }
+    .palette-row { display: flex; gap: 0.5rem; align-items: center; }
+    .swatch { width: 28px; height: 28px; border-radius: 50%; border: 2px solid rgba(0,0,0,0.08); }
+    .swatch-label { font-size: 0.72rem; color: var(--text-2); margin-top: 0.25rem; text-align: center; font-weight: 500; }
+    .swatch-wrap { display: flex; flex-direction: column; align-items: center; gap: 0; }
+
+    /* MAIN GRID */
+    .main { padding: 2.5rem 3rem; display: flex; flex-direction: column; gap: 2.5rem; }
+    .logo-section { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 2px 12px rgba(27,44,193,0.07); }
+    .logo-section-label {
+      padding: 1.1rem 1.75rem;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .ls-title { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-2); }
+    .ls-concept { font-size: 0.75rem; color: var(--text-2); opacity: 0.6; font-style: italic; }
+    .logo-previews {
+      display: grid; grid-template-columns: 1fr 1fr;
+    }
+    .preview-pane {
+      padding: 3.5rem 2.5rem;
+      display: flex; align-items: center; justify-content: center;
+      min-height: 160px;
+    }
+    .preview-pane.light { background: #fff; }
+    .preview-pane.dark  { background: var(--dark); }
+    .preview-pane.tint  { background: var(--cobalt-tint); }
+    .preview-pane.mid   { background: #F0F1FA; border-left: 1px solid var(--border); }
+
+    /* FAVICON ROW */
+    .favicon-section {
+      background: #fff; border-radius: 16px; overflow: hidden;
+      box-shadow: 0 2px 12px rgba(27,44,193,0.07);
+    }
+    .favicon-grid {
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      padding: 2rem; gap: 2rem; align-items: center; justify-items: center;
+    }
+    .fav-wrap { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
+    .fav-size { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-2); }
+    .fav-bg {
+      padding: 1rem; border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    }
+
+    /* EXPORT NOTE */
+    .export-note {
+      background: var(--cobalt-tint); border: 1px solid rgba(27,44,193,0.15);
+      border-radius: 12px; padding: 1.25rem 1.75rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .export-note svg { flex-shrink: 0; }
+    .export-note p { font-size: 0.8rem; color: var(--cobalt); line-height: 1.6; }
+    .export-note strong { font-weight: 700; }
+  </style>
+</head>
+<body>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div>
+    <h1>AuditSpherre — Logo System</h1>
+    <p>5 logo variations + favicon · Cobalt & Coral palette · SVG format</p>
+  </div>
+  <div>
+    <div class="palette-row">
+      <div class="swatch-wrap">
+        <div class="swatch" style="background:#1B2CC1;"></div>
+        <span class="swatch-label">Cobalt</span>
+      </div>
+      <div class="swatch-wrap">
+        <div class="swatch" style="background:#FF6B35;"></div>
+        <span class="swatch-label">Coral</span>
+      </div>
+      <div class="swatch-wrap">
+        <div class="swatch" style="background:#0C1230;"></div>
+        <span class="swatch-label">Dark</span>
+      </div>
+      <div class="swatch-wrap">
+        <div class="swatch" style="background:#FFFFFF; border-color:#E1E4F5;"></div>
+        <span class="swatch-label">White</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- ========================
+       LOGO 1 — PRIMARY MARK
+       ======================== -->
+  <div class="logo-section">
+    <div class="logo-section-label">
+      <span class="ls-title">01 — Primary Logo</span>
+      <span class="ls-concept">Geometric "A" with audit check arc · Horizontal lockup</span>
+    </div>
+    <div class="logo-previews">
+      <div class="preview-pane light">
+        <!-- PRIMARY LOGO ON WHITE -->
+        <svg width="280" height="52" viewBox="0 0 280 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Icon mark: bold "A" with check arc -->
+          <g>
+            <!-- Left leg of A -->
+            <path d="M4 46 L20 6 L28 6 L36 28" stroke="#1B2CC1" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <!-- Right leg of A -->
+            <path d="M36 28 L44 46" stroke="#1B2CC1" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+            <!-- Crossbar -->
+            <line x1="14" y1="30" x2="36" y2="30" stroke="#1B2CC1" stroke-width="4.5" stroke-linecap="round"/>
+            <!-- Coral check arc above -->
+            <path d="M10 20 Q24 8 38 20" stroke="#FF6B35" stroke-width="3" stroke-linecap="round" fill="none"/>
+            <!-- Coral dot -->
+            <circle cx="38" cy="20" r="3.5" fill="#FF6B35"/>
+          </g>
+          <!-- Wordmark -->
+          <text x="60" y="34" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="26" fill="#0C1230" letter-spacing="-0.5">Audit</text>
+          <text x="137" y="34" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="26" fill="#1B2CC1" letter-spacing="-0.5">Spherre</text>
+          <!-- Tagline -->
+          <text x="61" y="48" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="9" fill="#8892A4" letter-spacing="2">PRECISION · COMPLIANCE · TRUST</text>
+        </svg>
+      </div>
+      <div class="preview-pane dark">
+        <!-- PRIMARY LOGO ON DARK -->
+        <svg width="280" height="52" viewBox="0 0 280 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g>
+            <path d="M4 46 L20 6 L28 6 L36 28" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <path d="M36 28 L44 46" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+            <line x1="14" y1="30" x2="36" y2="30" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round"/>
+            <path d="M10 20 Q24 8 38 20" stroke="#FF6B35" stroke-width="3" stroke-linecap="round" fill="none"/>
+            <circle cx="38" cy="20" r="3.5" fill="#FF6B35"/>
+          </g>
+          <text x="60" y="34" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="26" fill="#ffffff" letter-spacing="-0.5">Audit</text>
+          <text x="137" y="34" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="26" fill="#4A5BE8" letter-spacing="-0.5">Spherre</text>
+          <text x="61" y="48" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="9" fill="rgba(255,255,255,0.35)" letter-spacing="2">PRECISION · COMPLIANCE · TRUST</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================
+       LOGO 2 — SHIELD MARK
+       ======================== -->
+  <div class="logo-section">
+    <div class="logo-section-label">
+      <span class="ls-title">02 — Shield Mark</span>
+      <span class="ls-concept">Shield of trust with embedded check · Stacked lockup</span>
+    </div>
+    <div class="logo-previews">
+      <div class="preview-pane light">
+        <svg width="180" height="80" viewBox="0 0 180 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Shield -->
+          <path d="M24 4 L44 10 L44 34 Q44 52 24 60 Q4 52 4 34 L4 10 Z" fill="#1B2CC1"/>
+          <path d="M24 4 L44 10 L44 34 Q44 52 24 60 Q4 52 4 34 L4 10 Z" stroke="rgba(255,255,255,0.15)" stroke-width="1" fill="none"/>
+          <!-- Checkmark -->
+          <path d="M13 32 L20 39 L35 22" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <!-- Coral accent at top of shield -->
+          <path d="M24 4 L44 10" stroke="#FF6B35" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- Wordmark stacked -->
+          <text x="54" y="32" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="22" fill="#0C1230" letter-spacing="-0.5">Audit</text>
+          <text x="54" y="56" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="22" fill="#1B2CC1" letter-spacing="-0.5">Spherre</text>
+          <!-- Coral line separator -->
+          <line x1="54" y1="38" x2="170" y2="38" stroke="#FF6B35" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="preview-pane dark">
+        <svg width="180" height="80" viewBox="0 0 180 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 4 L44 10 L44 34 Q44 52 24 60 Q4 52 4 34 L4 10 Z" fill="#3547D4"/>
+          <path d="M24 4 L44 10 L44 34 Q44 52 24 60 Q4 52 4 34 L4 10 Z" stroke="rgba(255,255,255,0.1)" stroke-width="1" fill="none"/>
+          <path d="M13 32 L20 39 L35 22" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M24 4 L44 10" stroke="#FF6B35" stroke-width="2.5" stroke-linecap="round"/>
+          <text x="54" y="32" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="22" fill="#ffffff" letter-spacing="-0.5">Audit</text>
+          <text x="54" y="56" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="22" fill="#4A5BE8" letter-spacing="-0.5">Spherre</text>
+          <line x1="54" y1="38" x2="170" y2="38" stroke="#FF6B35" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================
+       LOGO 3 — SPHERE ORBIT MARK
+       ======================== -->
+  <div class="logo-section">
+    <div class="logo-section-label">
+      <span class="ls-title">03 — Sphere Orbit Mark</span>
+      <span class="ls-concept">Globe with orbital ring & audit dot · Horizontal lockup</span>
+    </div>
+    <div class="logo-previews">
+      <div class="preview-pane light">
+        <svg width="270" height="56" viewBox="0 0 270 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Sphere circle -->
+          <circle cx="28" cy="28" r="24" stroke="#1B2CC1" stroke-width="1.6" fill="none" opacity="0.18"/>
+          <circle cx="28" cy="28" r="24" stroke="#1B2CC1" stroke-width="1.8" fill="none" stroke-dasharray="150 1" opacity="0.55"/>
+          <!-- Latitude lines -->
+          <ellipse cx="28" cy="28" rx="24" ry="8" stroke="#1B2CC1" stroke-width="1" fill="none" opacity="0.35"/>
+          <!-- Vertical line -->
+          <ellipse cx="28" cy="28" rx="7" ry="24" stroke="#1B2CC1" stroke-width="1" fill="none" opacity="0.35"/>
+          <!-- Orbit ring (tilted) -->
+          <ellipse cx="28" cy="28" rx="32" ry="10" stroke="#FF6B35" stroke-width="1.8" fill="none" stroke-dasharray="8 5" transform="rotate(-28 28 28)" opacity="0.9"/>
+          <!-- Orbit dot (coral) -->
+          <circle cx="52" cy="18" r="4.5" fill="#FF6B35"/>
+          <!-- Wordmark -->
+          <text x="63" y="35" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="24" fill="#0C1230" letter-spacing="-0.4">Audit<tspan fill="#1B2CC1">Spherre</tspan></text>
+        </svg>
+      </div>
+      <div class="preview-pane dark">
+        <svg width="270" height="56" viewBox="0 0 270 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="28" cy="28" r="24" stroke="rgba(255,255,255,0.15)" stroke-width="1.6" fill="none"/>
+          <circle cx="28" cy="28" r="24" stroke="rgba(255,255,255,0.5)" stroke-width="1.8" fill="none" stroke-dasharray="150 1"/>
+          <ellipse cx="28" cy="28" rx="24" ry="8" stroke="rgba(255,255,255,0.3)" stroke-width="1" fill="none"/>
+          <ellipse cx="28" cy="28" rx="7" ry="24" stroke="rgba(255,255,255,0.3)" stroke-width="1" fill="none"/>
+          <ellipse cx="28" cy="28" rx="32" ry="10" stroke="#FF6B35" stroke-width="1.8" fill="none" stroke-dasharray="8 5" transform="rotate(-28 28 28)" opacity="0.9"/>
+          <circle cx="52" cy="18" r="4.5" fill="#FF6B35"/>
+          <text x="63" y="35" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="24" fill="#ffffff" letter-spacing="-0.4">Audit<tspan fill="#4A5BE8">Spherre</tspan></text>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================
+       LOGO 4 — MONOGRAM MARK
+       ======================== -->
+  <div class="logo-section">
+    <div class="logo-section-label">
+      <span class="ls-title">04 — Monogram Mark</span>
+      <span class="ls-concept">"AS" lettermark in rounded square · Icon + wordmark</span>
+    </div>
+    <div class="logo-previews">
+      <div class="preview-pane light">
+        <svg width="260" height="60" viewBox="0 0 260 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Rounded square bg -->
+          <rect x="0" y="0" width="56" height="56" rx="14" fill="#1B2CC1"/>
+          <!-- Coral top-right accent corner -->
+          <rect x="38" y="0" width="18" height="18" rx="0" fill="#FF6B35"/>
+          <rect x="38" y="0" width="18" height="18" rx="14 0 0 0" fill="#FF6B35"/>
+          <rect x="42" y="0" width="14" height="14" rx="0" fill="#FF6B35"/>
+          <rect x="38" y="0" width="18" height="18" rx="14" fill="#1B2CC1"/>
+          <rect x="48" y="0" width="8" height="8" fill="#FF6B35"/>
+          <!-- A -->
+          <path d="M10 42 L20 16 L30 42" stroke="white" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <line x1="14" y1="33" x2="26" y2="33" stroke="white" stroke-width="3" stroke-linecap="round"/>
+          <!-- S -->
+          <path d="M38 22 Q38 18 42 18 Q46 18 46 22 Q46 26 38 26 Q34 26 34 30 Q34 38 38 38 Q42 38 42 34" stroke="#FF6B35" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+          <!-- Wordmark -->
+          <text x="70" y="28" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="20" fill="#0C1230" letter-spacing="-0.4">AuditSpherre</text>
+          <text x="71" y="46" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="8.5" fill="#8892A4" letter-spacing="2.5">COMPLIANCE · ASSURANCE</text>
+        </svg>
+      </div>
+      <div class="preview-pane dark">
+        <svg width="260" height="60" viewBox="0 0 260 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="0" width="56" height="56" rx="14" fill="#3547D4"/>
+          <rect x="48" y="0" width="8" height="8" fill="#FF6B35"/>
+          <path d="M10 42 L20 16 L30 42" stroke="white" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <line x1="14" y1="33" x2="26" y2="33" stroke="white" stroke-width="3" stroke-linecap="round"/>
+          <path d="M38 22 Q38 18 42 18 Q46 18 46 22 Q46 26 38 26 Q34 26 34 30 Q34 38 38 38 Q42 38 42 34" stroke="#FF6B35" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+          <text x="70" y="28" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="20" fill="#ffffff" letter-spacing="-0.4">AuditSpherre</text>
+          <text x="71" y="46" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="8.5" fill="rgba(255,255,255,0.35)" letter-spacing="2.5">COMPLIANCE · ASSURANCE</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================
+       LOGO 5 — MINIMAL WORDMARK
+       ======================== -->
+  <div class="logo-section">
+    <div class="logo-section-label">
+      <span class="ls-title">05 — Minimal Wordmark</span>
+      <span class="ls-concept">Pure typography with coral underline accent · Cleanest version</span>
+    </div>
+    <div class="logo-previews">
+      <div class="preview-pane light">
+        <svg width="260" height="56" viewBox="0 0 260 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Main wordmark -->
+          <text x="0" y="36" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="30" fill="#0C1230" letter-spacing="-1">Audit</text>
+          <text x="107" y="36" font-family="'Plus Jakarta Sans', sans-serif" font-weight="300" font-size="30" fill="#1B2CC1" letter-spacing="-0.5">Spherre</text>
+          <!-- Coral underline accent (only under "Audit") -->
+          <rect x="0" y="42" width="100" height="3.5" rx="2" fill="#FF6B35"/>
+          <!-- Tiny dot between -->
+          <circle cx="104" cy="43.75" r="2.2" fill="#FF6B35" opacity="0.4"/>
+        </svg>
+      </div>
+      <div class="preview-pane dark">
+        <svg width="260" height="56" viewBox="0 0 260 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <text x="0" y="36" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="30" fill="#ffffff" letter-spacing="-1">Audit</text>
+          <text x="107" y="36" font-family="'Plus Jakarta Sans', sans-serif" font-weight="300" font-size="30" fill="#4A5BE8" letter-spacing="-0.5">Spherre</text>
+          <rect x="0" y="42" width="100" height="3.5" rx="2" fill="#FF6B35"/>
+          <circle cx="104" cy="43.75" r="2.2" fill="#FF6B35" opacity="0.4"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================
+       FAVICON VARIATIONS
+       ======================== -->
+  <div class="favicon-section">
+    <div class="logo-section-label">
+      <span class="ls-title">Favicon — All Sizes</span>
+      <span class="ls-concept">Based on Logo 01 primary mark · Works at 16×16 through 512×512</span>
+    </div>
+    <div class="favicon-grid">
+
+      <!-- 512px preview -->
+      <div class="fav-wrap">
+        <div class="fav-bg" style="background:#F0F1FA; border-radius:18px; padding:0.5rem;">
+          <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="80" height="80" rx="18" fill="#1B2CC1"/>
+            <rect x="56" y="0" width="24" height="24" rx="0" fill="#FF6B35"/>
+            <rect x="62" y="0" width="18" height="18" rx="0" fill="#FF6B35"/>
+            <rect x="56" y="0" width="24" height="24" rx="18" fill="#1B2CC1"/>
+            <rect x="66" y="0" width="14" height="14" fill="#FF6B35"/>
+            <!-- A letterform -->
+            <path d="M16 62 L32 20 L40 20 L56 62" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <line x1="22" y1="48" x2="50" y2="48" stroke="white" stroke-width="6" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="fav-size">512 × 512</span>
+      </div>
+
+      <!-- 192px preview -->
+      <div class="fav-wrap">
+        <div class="fav-bg" style="background:#F0F1FA; border-radius:14px; padding:0.5rem;">
+          <svg width="60" height="60" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="80" height="80" rx="18" fill="#1B2CC1"/>
+            <rect x="66" y="0" width="14" height="14" fill="#FF6B35"/>
+            <path d="M16 62 L32 20 L40 20 L56 62" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <line x1="22" y1="48" x2="50" y2="48" stroke="white" stroke-width="6" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="fav-size">192 × 192</span>
+      </div>
+
+      <!-- 64px preview -->
+      <div class="fav-wrap">
+        <div class="fav-bg" style="background:#F0F1FA; border-radius:10px; padding:0.35rem;">
+          <svg width="44" height="44" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="80" height="80" rx="18" fill="#1B2CC1"/>
+            <rect x="66" y="0" width="14" height="14" fill="#FF6B35"/>
+            <path d="M16 62 L32 20 L40 20 L56 62" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <line x1="22" y1="48" x2="50" y2="48" stroke="white" stroke-width="6" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="fav-size">64 × 64</span>
+      </div>
+
+      <!-- 32px preview -->
+      <div class="fav-wrap">
+        <div class="fav-bg" style="background:#F0F1FA; border-radius:7px; padding:0.25rem;">
+          <svg width="32" height="32" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="80" height="80" rx="18" fill="#1B2CC1"/>
+            <rect x="66" y="0" width="14" height="14" fill="#FF6B35"/>
+            <path d="M16 62 L32 20 L40 20 L56 62" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <line x1="22" y1="48" x2="50" y2="48" stroke="white" stroke-width="6" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="fav-size">32 × 32</span>
+      </div>
+
+      <!-- 16px preview -->
+      <div class="fav-wrap">
+        <div class="fav-bg" style="background:#F0F1FA; border-radius:5px; padding:0.2rem;">
+          <svg width="20" height="20" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="80" height="80" rx="20" fill="#1B2CC1"/>
+            <rect x="62" y="0" width="18" height="18" fill="#FF6B35"/>
+            <path d="M16 62 L32 20 L40 20 L56 62" stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <line x1="22" y1="48" x2="50" y2="48" stroke="white" stroke-width="7" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="fav-size">16 × 16</span>
+      </div>
+
+    </div>
+
+    <!-- Dark bg favicon row -->
+    <div style="border-top:1px solid var(--border); padding:1.5rem 2rem; background:#F0F1FA;">
+      <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-2);margin-bottom:1.25rem;">Preview on dark backgrounds</p>
+      <div style="display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap;">
+        <div style="background:#0C1230;padding:1rem;border-radius:14px;display:flex;gap:1rem;align-items:center;">
+          <svg width="36" height="36" viewBox="0 0 80 80" fill="none"><rect width="80" height="80" rx="18" fill="#3547D4"/><rect x="66" y="0" width="14" height="14" fill="#FF6B35"/><path d="M16 62 L32 20 L40 20 L56 62" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="22" y1="48" x2="50" y2="48" stroke="white" stroke-width="6" stroke-linecap="round"/></svg>
+          <svg width="24" height="24" viewBox="0 0 80 80" fill="none"><rect width="80" height="80" rx="18" fill="#3547D4"/><rect x="66" y="0" width="14" height="14" fill="#FF6B35"/><path d="M16 62 L32 20 L40 20 L56 62" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="22" y1="48" x2="50" y2="48" stroke="white" stroke-width="6" stroke-linecap="round"/></svg>
+          <svg width="16" height="16" viewBox="0 0 80 80" fill="none"><rect width="80" height="80" rx="20" fill="#3547D4"/><rect x="62" y="0" width="18" height="18" fill="#FF6B35"/><path d="M16 62 L32 20 L40 20 L56 62" stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="22" y1="48" x2="50" y2="48" stroke="white" stroke-width="7" stroke-linecap="round"/></svg>
+          <span style="font-size:0.78rem;color:rgba(255,255,255,0.4);">Dark bg · lighter cobalt fill</span>
+        </div>
+        <div style="background:#ffffff;border:1px solid var(--border);padding:1rem;border-radius:14px;display:flex;gap:1rem;align-items:center;">
+          <svg width="36" height="36" viewBox="0 0 80 80" fill="none"><rect width="80" height="80" rx="18" fill="#1B2CC1"/><rect x="66" y="0" width="14" height="14" fill="#FF6B35"/><path d="M16 62 L32 20 L40 20 L56 62" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="22" y1="48" x2="50" y2="48" stroke="white" stroke-width="6" stroke-linecap="round"/></svg>
+          <svg width="24" height="24" viewBox="0 0 80 80" fill="none"><rect width="80" height="80" rx="18" fill="#1B2CC1"/><rect x="66" y="0" width="14" height="14" fill="#FF6B35"/><path d="M16 62 L32 20 L40 20 L56 62" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="22" y1="48" x2="50" y2="48" stroke="white" stroke-width="6" stroke-linecap="round"/></svg>
+          <svg width="16" height="16" viewBox="0 0 80 80" fill="none"><rect width="80" height="80" rx="20" fill="#1B2CC1"/><rect x="62" y="0" width="18" height="18" fill="#FF6B35"/><path d="M16 62 L32 20 L40 20 L56 62" stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="22" y1="48" x2="50" y2="48" stroke="white" stroke-width="7" stroke-linecap="round"/></svg>
+          <span style="font-size:0.78rem;color:var(--text-2);">Light bg · standard cobalt fill</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPORT NOTE -->
+  <div class="export-note">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <circle cx="10" cy="10" r="9" stroke="#1B2CC1" stroke-width="1.3" fill="none"/>
+      <path d="M10 9v5M10 7v.5" stroke="#1B2CC1" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+    <p>
+      <strong>All logos are SVG-based</strong> — copy any SVG block from this page's source code to use in your project, Figma, or Illustrator.
+      For the website favicon, add <code style="background:rgba(27,44,193,0.1);padding:0.1rem 0.4rem;border-radius:4px;font-size:0.78rem;">&lt;link rel="icon" href="favicon.svg" type="image/svg+xml"&gt;</code> to your HTML head.
+      To export as PNG, open in browser → right-click SVG → "Save as image" or paste into Figma.
+    </p>
+  </div>
+
+</div>
+
+</body>
+</html>

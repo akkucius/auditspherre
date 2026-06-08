@@ -2,13 +2,11 @@
 
 // Navbar scroll
 const navbar = document.getElementById('navbar');
-if (navbar) {
-  function handleScroll() {
-    navbar.classList.toggle('scrolled', window.scrollY > 20);
-  }
-  window.addEventListener('scroll', handleScroll, { passive: true });
-  handleScroll();
+function handleScroll() {
+  navbar.classList.toggle('scrolled', window.scrollY > 20);
 }
+window.addEventListener('scroll', handleScroll, { passive: true });
+handleScroll();
 
 // Hamburger menu
 const hamburger = document.getElementById('hamburger');
@@ -28,22 +26,12 @@ if (hamburger && navLinks) {
   });
 }
 
-// Active nav link (supports /v2, /v2/services, and *.html paths)
+// Active nav link
 (function () {
-  const parts = window.location.pathname.split('/').filter(Boolean);
-  let page = parts[parts.length - 1] || '';
-
-  if (!page || /^v[1-3]$/.test(page)) {
-    page = '';
-  }
-
-  document.querySelectorAll('.nav-links a').forEach((a) => {
-    const href = a.getAttribute('href').split('#')[0].replace(/\/$/, '');
-    const hrefPage = href.split('/').filter(Boolean).pop() || '';
-    const currentPage = page;
-    if (hrefPage === currentPage || (!hrefPage && !currentPage)) {
-      a.classList.add('active');
-    }
+  const page = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    const href = a.getAttribute('href').split('#')[0];
+    if (href === page || (page === '' && href === 'index.html')) a.classList.add('active');
   });
 })();
 

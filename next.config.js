@@ -2,11 +2,20 @@
 const nextConfig = {
   trailingSlash: false,
   async rewrites() {
-    const multiPageVersions = ['v1', 'v2', 'v3'];
-    const spaVersions = ['v4', 'v5'];
+    // v1, v3 — SPA (single index.html, all inline)
+    const spaVersions = ['v1', 'v3'];
+    // v2 — multi-page (shared.css/js + sub-pages)
+    const multiPageVersions = ['v2'];
     const subPages = ['services', 'about', 'contact'];
 
     const rewrites = [];
+
+    for (const version of spaVersions) {
+      rewrites.push({
+        source: `/${version}`,
+        destination: `/${version}/index.html`,
+      });
+    }
 
     for (const version of multiPageVersions) {
       rewrites.push({
@@ -20,13 +29,6 @@ const nextConfig = {
           destination: `/${version}/${page}.html`,
         });
       }
-    }
-
-    for (const version of spaVersions) {
-      rewrites.push({
-        source: `/${version}`,
-        destination: `/${version}/index.html`,
-      });
     }
 
     return rewrites;

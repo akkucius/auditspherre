@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Audit Services — Auditspherre</title>
+  <title>Our Audit Services — AuditSpherre</title>
   <link rel="stylesheet" href="shared.css">
   <style>
     /* === SERVICE DETAIL === */
     .service-section { padding: 5rem 0; }
-    .service-intro { max-width: 760px; margin-bottom: 2.5rem; font-size: 1rem; line-height: 1.8; }
+    .service-intro { max-width: 760px; margin-bottom: 2.5rem; font-size: 1rem; line-height: 1.82; }
     .service-header { margin-bottom: 2rem; }
     .service-header h2 { margin-top: 1rem; }
 
@@ -16,7 +16,7 @@
     .deliverables-list li {
       counter-increment: deliverable;
       display: flex; align-items: flex-start; gap: 1rem;
-      padding: 0.85rem 0; border-bottom: 1px solid var(--color-border);
+      padding: 0.9rem 0; border-bottom: 1px solid var(--color-border);
       font-size: 0.9rem; color: var(--color-text-secondary);
     }
     .deliverables-list li:first-child { border-top: 1px solid var(--color-border); }
@@ -24,68 +24,67 @@
       content: counter(deliverable, decimal-leading-zero);
       flex-shrink: 0;
       font-family: var(--font-display);
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--color-accent);
-      opacity: 0.6;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--color-green-mid);
       min-width: 2rem;
       padding-top: 1px;
     }
 
     .who-for { margin: 2.5rem 0; }
-    .who-for h4 { margin-bottom: 1rem; font-size: 0.88rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-text-secondary); }
+    .who-for h4 { margin-bottom: 1rem; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-muted); }
     .who-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; }
     .who-tag {
-      font-size: 0.8rem; color: var(--color-text-secondary);
-      padding: 0.4rem 1rem; border: 1px solid var(--color-border);
-      border-radius: 2px; background: var(--color-bg-card);
+      font-size: 0.8rem; color: var(--color-green);
+      padding: 0.4rem 1rem;
+      border: 1px solid var(--color-green-tint);
+      border-radius: var(--radius-pill);
+      background: var(--color-green-ghost);
+      font-weight: 500;
     }
 
-    /* Subsection labels within service detail */
-    .subsection-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-text-secondary); margin-bottom: 0.75rem; display: block; }
-
-    /* Service anchor targets */
+    .subsection-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-green-mid); margin-bottom: 0.75rem; display: block; }
     .anchor-target { scroll-margin-top: calc(var(--nav-height) + 2rem); }
-
-    /* Divider between the two service sections */
     .inter-service { height: 1px; background: var(--color-border); margin: 0; }
 
     /* === COMPARISON SECTION === */
     .comparison { background: var(--color-bg-surface); }
     .comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem; }
-    .comparison-col { padding: 2.5rem; border-radius: 5px; }
-    .comparison-col.others { background: var(--color-bg-primary); border: 1px solid var(--color-border); }
-    .comparison-col.us { background: var(--color-bg-card); border: 1px solid rgba(201,168,76,0.28); }
+    .comparison-col { padding: 2.5rem; border-radius: var(--radius-lg); }
+    .comparison-col.others { background: var(--color-bg-card); border: 1px solid var(--color-border); box-shadow: var(--shadow-xs); }
+    .comparison-col.us { background: var(--color-green-dark); border: 1px solid rgba(45,106,79,0.3); box-shadow: var(--shadow-green); }
     .comparison-col h3 { font-size: 1.1rem; margin-bottom: 1.75rem; }
-    .comparison-col.us h3 { color: var(--color-accent); }
+    .comparison-col.us h3 { color: #fff; }
     .comparison-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
     .comparison-list li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.9rem; line-height: 1.55; color: var(--color-text-secondary); }
-    .comparison-list li::before { content: ''; flex-shrink: 0; width: 16px; height: 16px; margin-top: 2px; }
+    .comparison-col.us .comparison-list li { color: rgba(255,255,255,0.75); }
+    .comparison-list li::before { content: ''; flex-shrink: 0; width: 18px; height: 18px; margin-top: 1px; }
     .comparison-col.others .comparison-list li::before {
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7' stroke='%232A3550' stroke-width='1' fill='none'/%3E%3Cpath d='M5 5l6 6M11 5l-6 6' stroke='%238B9CB5' stroke-width='1.2' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'%3E%3Ccircle cx='9' cy='9' r='8' fill='%23F2EEE5' stroke='%23C8C0B4' stroke-width='1'/%3E%3Cpath d='M5.5 5.5l7 7M12.5 5.5l-7 7' stroke='%23C8C0B4' stroke-width='1.3' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center;
     }
     .comparison-col.us .comparison-list li::before {
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7' stroke='%23C9A84C' stroke-width='1' fill='none'/%3E%3Cpath d='M5 8l2 2 4-4' stroke='%23C9A84C' stroke-width='1.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'%3E%3Ccircle cx='9' cy='9' r='8' fill='rgba(255,255,255,0.12)' stroke='rgba(255,255,255,0.4)' stroke-width='1'/%3E%3Cpath d='M5.5 9l2.5 2.5 4.5-4.5' stroke='%2352B788' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center;
     }
 
     /* === BOTTOM CTA === */
-    .services-cta { background: var(--color-bg-primary); }
+    .services-cta { background: var(--color-green-dark); }
     .cta-box {
-      border: 1px solid rgba(201,168,76,0.28);
-      background: linear-gradient(135deg, rgba(201,168,76,0.05) 0%, rgba(62,184,160,0.025) 100%);
-      border-radius: 5px; padding: 3.5rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+      border-radius: var(--radius-lg); padding: 3.5rem;
       display: flex; align-items: center; justify-content: space-between; gap: 3rem;
     }
-    .cta-box h2 { font-size: clamp(1.5rem, 2.5vw, 2rem); }
-    .cta-box p { font-size: 0.925rem; margin-top: 0.5rem; }
+    .cta-box h2 { font-size: clamp(1.5rem, 2.5vw, 2rem); color: #fff; }
+    .cta-box p { font-size: 0.925rem; margin-top: 0.5rem; color: rgba(255,255,255,0.65); }
 
     @media (max-width: 1024px) {
       .comparison-grid { grid-template-columns: 1fr; }
-      .cta-box { flex-direction: column; align-items: flex-start; padding: 2rem; }
+      .cta-box { flex-direction: column; align-items: flex-start; padding: 2.5rem; }
     }
     @media (max-width: 768px) {
-      .cta-box { flex-direction: column; align-items: flex-start; padding: 2rem; }
+      .cta-box { padding: 2rem; }
     }
+      .logo-link { display: inline-flex; align-items: center; text-decoration: none; }
   </style>
 </head>
 <body>
@@ -93,7 +92,13 @@
 <!-- NAVBAR -->
 <nav class="navbar" id="navbar">
   <div class="navbar-inner">
-    <a href="index.html" class="logo">Audit<span class="accent">spherre</span></a>
+    <a href="index.html" class="logo-link" aria-label="AuditSpherre home"><svg height="38" viewBox="0 0 210 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15 2 L28 6.5 L28 21 Q28 32 15 37 Q2 32 2 21 L2 6.5 Z" fill="#2D6A4F"/>
+        <path d="M15 2 L28 6.5" stroke="#FF6B35" stroke-width="2" stroke-linecap="round"/>
+        <path d="M8.5 20 L13.5 25 L22 14" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <text x="38" y="25" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="800" font-size="19" letter-spacing="-0.4"><tspan fill="#1A1C1A">Audit</tspan><tspan fill="#2D6A4F">Spherre</tspan></text>
+        <line x1="38" y1="30" x2="207" y2="30" stroke="#FF6B35" stroke-width="1.5" stroke-linecap="round" opacity="0.45"/>
+      </svg></a>
     <ul class="nav-links" id="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="services.html">Services</a></li>
@@ -125,7 +130,7 @@
       <span class="badge">SEBI Mandated</span>
       <h2>Stock Broker Audit</h2>
     </div>
-    <p class="service-intro">Auditspherre conducts annual internal audits for SEBI-registered stockbrokers and trading members across NSE, BSE, MCX, and NCDEX. Our audit methodology aligns with SEBI Circular No. MIRSD/DPS III/Cir-26/08 and subsequent exchange directives.</p>
+    <p class="service-intro">AuditSpherre conducts annual internal audits for SEBI-registered stockbrokers and trading members across NSE, BSE, MCX, and NCDEX. Our audit methodology aligns with SEBI Circular No. MIRSD/DPS III/Cir-26/08 and subsequent exchange directives.</p>
 
     <span class="subsection-label">What's Covered</span>
     <ul class="coverage-list">
@@ -170,7 +175,7 @@
       <span class="badge badge-teal">CERT-In · SEBI Cyber Circular</span>
       <h2>Cyber Audit</h2>
     </div>
-    <p class="service-intro">The SEBI Cyber Security and Cyber Resilience Framework (CSCRF) mandates annual cybersecurity audits for market infrastructure institutions and registered intermediaries. Auditspherre conducts end-to-end cyber audits covering your networks, applications, and IT governance posture.</p>
+    <p class="service-intro">The SEBI Cyber Security and Cyber Resilience Framework (CSCRF) mandates annual cybersecurity audits for market infrastructure institutions and registered intermediaries. AuditSpherre conducts end-to-end cyber audits covering your networks, applications, and IT governance posture.</p>
 
     <span class="subsection-label">What's Covered</span>
     <ul class="coverage-list">
@@ -212,7 +217,7 @@
 <section class="section comparison">
   <div class="container">
     <span class="section-label">Why Choose Us</span>
-    <h2>The Auditspherre difference</h2>
+    <h2>The AuditSpherre difference</h2>
     <div class="comparison-grid">
 
       <div class="comparison-col others">
@@ -226,7 +231,7 @@
       </div>
 
       <div class="comparison-col us">
-        <h3>The Auditspherre approach</h3>
+        <h3>The AuditSpherre approach</h3>
         <ul class="comparison-list">
           <li>Audit methodology built exclusively for SEBI-regulated entities</li>
           <li>Auditors with securities market and CERT-In empanelled experience</li>
@@ -249,7 +254,7 @@
         <h2>Not sure which audit you need?</h2>
         <p>Tell us about your entity and we'll outline the exact obligations you face.</p>
       </div>
-      <a href="contact.html" class="btn btn-primary">Talk to an Auditor</a>
+      <a href="contact.html" class="btn btn-white">Talk to an Auditor</a>
     </div>
   </div>
 </section>
@@ -259,7 +264,13 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-col">
-        <a href="index.html" class="logo">Audit<span class="accent">spherre</span></a>
+        <a href="index.html" class="logo-link" aria-label="AuditSpherre home"><svg height="32" viewBox="0 0 210 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15 2 L28 6.5 L28 21 Q28 32 15 37 Q2 32 2 21 L2 6.5 Z" fill="#52B788"/>
+          <path d="M15 2 L28 6.5" stroke="#FF6B35" stroke-width="2" stroke-linecap="round"/>
+          <path d="M8.5 20 L13.5 25 L22 14" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <text x="38" y="25" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="800" font-size="19" letter-spacing="-0.4"><tspan fill="#fff">Audit</tspan><tspan fill="#52B788">Spherre</tspan></text>
+          <line x1="38" y1="30" x2="207" y2="30" stroke="#FF6B35" stroke-width="1.5" stroke-linecap="round" opacity="0.45"/>
+        </svg></a>
         <p class="footer-tagline">Precision. Compliance. Trust.</p>
       </div>
       <div class="footer-col">
@@ -278,7 +289,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2026 Auditspherre. All rights reserved.</p>
+      <p>© 2026 AuditSpherre. All rights reserved.</p>
       <span class="compliance-note">Registered audit firm · SEBI empanelled auditors</span>
     </div>
   </div>

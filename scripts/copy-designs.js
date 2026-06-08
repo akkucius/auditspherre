@@ -5,24 +5,13 @@ const root = path.join(__dirname, '..');
 const designRoot = path.join(root, 'design', 'claude-design');
 const publicRoot = path.join(root, 'public');
 
-const MULTI_PAGE_VERSIONS = ['v1', 'v2', 'v3'];
-const SPA_VERSIONS = ['v4', 'v5'];
-const SPA_FILES = ['index.html'];
+// Auto-detect: multi-page if shared.css exists, SPA otherwise
+const VERSIONS = ['v1', 'v2', 'v3'];
+const SUB_PAGES = ['services', 'about', 'contact'];
 const ROBOTS_META = [
   '<meta name="robots" content="noindex, nofollow">',
   '<meta name="googlebot" content="noindex, nofollow">',
 ].join('\n  ');
-
-function injectRobotsMeta(html) {
-  if (/name="robots"/i.test(html)) {
-    return html.replace(
-      /<meta\s+name="robots"[^>]*>/i,
-      '<meta name="robots" content="noindex, nofollow">',
-    );
-  }
-
-  return html.replace(/<head>/i, `<head>\n  ${ROBOTS_META}`);
-}
 
 function removeDirectory(dir) {
   if (fs.existsSync(dir)) {
@@ -30,91 +19,86 @@ function removeDirectory(dir) {
   }
 }
 
+function isMultiPage(versionDir) {
+  return fs.existsSync(path.join(versionDir, 'shared.css'));
+}
+
+function injectRobotsMeta(html) {
+  if (/name="robots"/i.test(html)) return html;
+  return html.replace(/<head>/i, `<head>\n  ${ROBOTS_META}`);
+}
+
 function injectBaseHref(html, version) {
-  const baseTag = `<base href="/${version}/">`;
-
-  if (/<base\s/i.test(html)) {
-    return html.replace(/<base\s[^>]*>/i, baseTag);
-  }
-
-  return html.replace(/<head>/i, `<head>\n  ${baseTag}`);
+  const tag = `<base href="/${version}/">`;
+  if (/<base\s/i.test(html)) return html.replace(/<base\s[^>]*>/i, tag);
+  return html.replace(/<head>/i, `<head>\n  ${tag}`);
 }
 
 function rewriteInternalLinks(html, version) {
   const base = `/${version}`;
-
   return html
-    .replace(/href="index\.html/g, `href="${base}`)
-    .replace(/href="services\.html/g, `href="${base}/services`)
-    .replace(/href="about\.html/g, `href="${base}/about`)
-    .replace(/href="contact\.html/g, `href="${base}/contact`)
+    .replace(/href="index\.html"/g, `href="${base}"`)
+    .replace(/href="services\.html"/g, `href="${base}/services"`)
+    .replace(/href="about\.html"/g, `href="${base}/about"`)
+    .replace(/href="contact\.html"/g, `href="${base}/contact"`)
     .replace(/href="shared\.css"/g, `href="${base}/shared.css"`)
     .replace(/src="shared\.js"/g, `src="${base}/shared.js"`);
 }
 
-function processMultiPageHtml(html, version) {
-  let output = injectRobotsMeta(html);
-  output = injectBaseHref(output, version);
-  output = rewriteInternalLinks(output, version);
-  return output;
+function processHtml(html, version, multiPage) {
+  let out = injectRobotsMeta(html);
+  out = injectBaseHref(out, version);
+  if (multiPage) out = rewriteInternalLinks(out, version);
+  return out;
 }
 
-function copyMultiPageVersion(version) {
+function copyVersion(version) {
   const srcDir = path.join(designRoot, version);
   const destDir = path.join(publicRoot, version);
+
+  if (!fs.existsSync(srcDir)) {
+    console.warn(`  Skipping ${version} — source folder not found`);
+    return;
+  }
 
   removeDirectory(destDir);
   fs.mkdirSync(destDir, { recursive: true });
 
-  for (const entry of fs.readdirSync(srcDir, { withFileTypes: true })) {
+  const multiPage = isMultiPage(srcDir);
+  const entries = fs.readdirSync(srcDir, { withFileTypes: true });
+
+  for (const entry of entries) {
     if (entry.isDirectory()) continue;
 
-    const srcPath = path.join(srcDir, entry.name);
-    const destPath = path.join(destDir, entry.name);
+    const srcFile = path.join(srcDir, entry.name);
+    const destFile = path.join(destDir, entry.name);
 
     if (entry.name.endsWith('.html')) {
-      const html = fs.readFileSync(srcPath, 'utf8');
-      fs.writeFileSync(destPath, processMultiPageHtml(html, version), 'utf8');
+      const html = fs.readFileSync(srcFile, 'utf8');
+      fs.writeFileSync(destFile, processHtml(html, version, multiPage), 'utf8');
     } else {
-      fs.copyFileSync(srcPath, destPath);
+      fs.copyFileSync(srcFile, destFile);
     }
   }
 
-  console.log(`Copied ${version} (multi-page)`);
+  const type = multiPage ? 'multi-page' : 'SPA';
+  console.log(`  Copied ${version} (${type})`);
 }
 
-function copySpaVersion(version) {
-  const srcDir = path.join(designRoot, version);
-  const destDir = path.join(publicRoot, version);
-
-  removeDirectory(destDir);
-  fs.mkdirSync(destDir, { recursive: true });
-
-  for (const file of SPA_FILES) {
-    const srcFile = path.join(srcDir, file);
-    if (!fs.existsSync(srcFile)) {
-      throw new Error(`Missing SPA entry file: ${srcFile}`);
-    }
-
-    let html = fs.readFileSync(srcFile, 'utf8');
-    html = injectRobotsMeta(html);
-    const baseTag = `<base href="/${version}/">`;
-    if (!/<base\s/i.test(html)) {
-      html = html.replace(/<head>/i, `<head>\n  ${baseTag}`);
-    }
-    fs.writeFileSync(path.join(destDir, file), html, 'utf8');
+// Remove versions no longer in use
+const obsolete = ['v4', 'v5'];
+for (const v of obsolete) {
+  const dir = path.join(publicRoot, v);
+  if (fs.existsSync(dir)) {
+    removeDirectory(dir);
+    console.log(`  Removed obsolete ${v} from public/`);
   }
-
-  console.log(`Copied ${version} (SPA)`);
-}
-
-if (!fs.existsSync(designRoot)) {
-  throw new Error(`Design source folder not found: ${designRoot}`);
 }
 
 fs.mkdirSync(publicRoot, { recursive: true });
 
-MULTI_PAGE_VERSIONS.forEach(copyMultiPageVersion);
-SPA_VERSIONS.forEach(copySpaVersion);
+for (const version of VERSIONS) {
+  copyVersion(version);
+}
 
-console.log('Design versions copied to public/');
+console.log('Done.');
